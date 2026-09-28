@@ -12,7 +12,7 @@ export const PERSONAL_INFO = {
   email: "damarysleon88@gmail.com",
   status: "Available for work",
   linkedin: "https://www.linkedin.com/in/damarys-leon",
-  github: "https://github.com/damarysleon",
+  github: "https://github.com/Yeedamarys",
   instagram: "https://instagram.com/damarys.dev",
   quote: "Technology can also be a way to create a better world",
   aboutSummary: [

@@ -7,6 +7,7 @@ import { SkillsSection } from './components/SkillsSection';
 import { LanguagesCard } from './components/LanguagesCard';
 import { ExperienceTimeline } from './components/ExperienceTimeline';
 import { FeaturedProjects } from './components/FeaturedProjects';
+import { GithubStatsCard } from './components/GithubStatsCard';
 import { EducationSection } from './components/EducationSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
@@ -60,21 +61,21 @@ export default function App() {
             onViewProjects={handleViewProjectsScroll}
           />
 
-          {/* 2. Middle Row matching Mockup 4: Sobre Mí | Habilidades Técnicas | Idiomas */}
+          {/* 2. Middle Row: About Me | Technical Skills | Languages */}
           <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 items-stretch">
               
-              {/* Sobre mí */}
+              {/* About Me */}
               <div className="lg:col-span-4 flex flex-col">
                 <AboutSection />
               </div>
 
-              {/* Habilidades Técnicas */}
+              {/* Technical Skills */}
               <div className="lg:col-span-5 flex flex-col" id="habilidades">
                 <SkillsSection />
               </div>
 
-              {/* Idiomas + 3D Headphones */}
+              {/* Languages + 3D Headphones */}
               <div className="md:col-span-2 lg:col-span-3 flex flex-col">
                 <LanguagesCard />
               </div>
@@ -82,16 +83,16 @@ export default function App() {
             </div>
           </section>
 
-          {/* 3. Lower Row matching Mockup 4: Experiencia Profesional | Proyectos Destacados (with 3D Laptop) */}
+          {/* 3. Lower Row: Professional Experience | Featured Projects */}
           <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" id="experiencia">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
               
-              {/* Experiencia Profesional */}
+              {/* Professional Experience */}
               <div className="lg:col-span-7 flex flex-col">
                 <ExperienceTimeline />
               </div>
 
-              {/* Proyectos Destacados */}
+              {/* Featured Projects */}
               <div className="lg:col-span-5 flex flex-col" id="proyectos">
                 <FeaturedProjects
                   onSelectProject={handleSelectProject}
@@ -102,10 +103,13 @@ export default function App() {
             </div>
           </section>
 
-          {/* 4. Educación & Surrealist Saturn Banner */}
+          {/* 4. GitHub Live Activity Widget (Matching reference image) */}
+          <GithubStatsCard />
+
+          {/* 5. Education & Surrealist Saturn Banner */}
           <EducationSection />
 
-          {/* 5. Contact Form for Recruiters */}
+          {/* 6. Contact Form */}
           <ContactSection />
 
         </main>
