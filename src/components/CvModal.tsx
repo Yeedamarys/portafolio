@@ -62,19 +62,19 @@ export const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose }) => {
             <button
               onClick={handlePrint}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-pink-200 bg-pink-50 text-xs font-semibold text-pink-700 hover:bg-pink-100 transition-colors"
-              title="Imprimir o guardar como PDF"
+              title="Print or save as PDF"
             >
               <Printer className="h-3.5 w-3.5" />
-              <span>Imprimir / PDF</span>
+              <span>Print / PDF</span>
             </button>
 
             <button
               onClick={handleDownloadJson}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 text-xs font-semibold text-white shadow-sm hover:from-pink-600 hover:to-rose-600 transition-all"
-              title="Descargar datos estructurados"
+              title="Download structured data"
             >
               <Download className="h-3.5 w-3.5" />
-              <span>Datos JSON</span>
+              <span>JSON Data</span>
             </button>
 
             <button
@@ -83,7 +83,7 @@ export const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose }) => {
                 onClose();
               }}
               className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 transition-colors ml-2"
-              aria-label="Cerrar modal"
+              aria-label="Close modal"
             >
               <X className="h-4 w-4" />
             </button>
@@ -124,10 +124,10 @@ export const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          {/* Perfil Profesional */}
+          {/* Professional Profile */}
           <div>
             <h2 className="text-xs font-bold uppercase tracking-wider text-pink-600 mb-2">
-              Perfil Profesional
+              Professional Profile
             </h2>
             <div className="space-y-2 text-xs sm:text-sm text-slate-700 leading-relaxed">
               <p>{PERSONAL_INFO.aboutSummary[0]}</p>
@@ -138,10 +138,10 @@ export const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          {/* Experiencia Laboral */}
+          {/* Work Experience */}
           <div>
             <h2 className="text-xs font-bold uppercase tracking-wider text-pink-600 mb-3 flex items-center gap-1.5">
-              <Briefcase className="h-4 w-4" /> Experiencia Laboral
+              <Briefcase className="h-4 w-4" /> Work Experience
             </h2>
             <div className="space-y-4">
               {EXPERIENCES.map((exp) => (
@@ -164,10 +164,10 @@ export const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          {/* Stack & Habilidades */}
+          {/* Technical Skills */}
           <div>
             <h2 className="text-xs font-bold uppercase tracking-wider text-pink-600 mb-2 flex items-center gap-1.5">
-              <Cpu className="h-4 w-4" /> Habilidades Técnicas
+              <Cpu className="h-4 w-4" /> Technical Skills
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
               {SKILLS.map((skill) => (
@@ -179,11 +179,11 @@ export const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          {/* Educación & Idiomas */}
+          {/* Education & Languages */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
             <div className="p-3.5 rounded-2xl bg-pink-50/40 border border-pink-100">
               <h2 className="text-xs font-bold uppercase tracking-wider text-pink-600 mb-1 flex items-center gap-1.5">
-                <GraduationCap className="h-4 w-4" /> Educación
+                <GraduationCap className="h-4 w-4" /> Education
               </h2>
               <p className="text-sm font-bold text-slate-900">{EDUCATION.degree}</p>
               <p className="text-xs font-semibold text-slate-700">{EDUCATION.institution}</p>
@@ -192,7 +192,7 @@ export const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose }) => {
 
             <div className="p-3.5 rounded-2xl bg-pink-50/40 border border-pink-100">
               <h2 className="text-xs font-bold uppercase tracking-wider text-pink-600 mb-1 flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4" /> Idiomas
+                <CheckCircle2 className="h-4 w-4" /> Languages
               </h2>
               <div className="space-y-1 text-xs">
                 {LANGUAGES.map((l) => (
@@ -207,7 +207,7 @@ export const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose }) => {
 
           {/* Signature */}
           <div className="pt-4 border-t border-pink-100 flex items-center justify-between text-xs text-slate-500">
-            <span>Firma Profesional</span>
+            <span>Professional Signature</span>
             <span className="font-signature text-2xl text-pink-600">Damarys León 💖</span>
           </div>
 

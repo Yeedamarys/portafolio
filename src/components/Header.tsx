@@ -20,13 +20,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCv, onOpenCodeDetails }) =
   };
 
   const navItems = [
-    { label: 'Inicio', href: '#inicio' },
-    { label: 'Sobre mí', href: '#sobre-mi' },
-    { label: 'Experiencia', href: '#experiencia' },
-    { label: 'Habilidades', href: '#habilidades' },
-    { label: 'Proyectos', href: '#proyectos' },
-    { label: 'Educación', href: '#educacion' },
-    { label: 'Contacto', href: '#contacto' },
+    { label: 'Home', href: '#inicio' },
+    { label: 'About Me', href: '#sobre-mi' },
+    { label: 'Experience', href: '#experiencia' },
+    { label: 'Skills', href: '#habilidades' },
+    { label: 'Projects', href: '#proyectos' },
+    { label: 'Education', href: '#educacion' },
+    { label: 'Contact', href: '#contacto' },
   ];
 
   const handleNavClick = (href: string) => {
@@ -84,7 +84,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCv, onOpenCodeDetails }) =
             {/* Audio Toggle */}
             <button
               onClick={toggleSound}
-              title={soundActive ? 'Desactivar efectos de sonido' : 'Activar efectos sonoros'}
+              title={soundActive ? 'Mute sound effects' : 'Enable sound effects'}
               className={`rounded-full p-2 text-slate-500 transition-all hover:bg-pink-100/60 ${
                 soundActive ? 'bg-pink-100 text-pink-600 shadow-inner' : ''
               }`}
@@ -100,7 +100,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCv, onOpenCodeDetails }) =
                 if (onOpenCodeDetails) onOpenCodeDetails();
                 else handleNavClick('#habilidades');
               }}
-              title="Ver Stack Tecnológico"
+              title="View Tech Stack"
               className="hidden sm:flex h-9 w-9 items-center justify-center rounded-full border border-pink-200 bg-white/90 text-slate-600 transition-transform hover:scale-105 hover:border-pink-400 hover:text-pink-600"
               id="header-code-btn"
             >
@@ -124,7 +124,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCv, onOpenCodeDetails }) =
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden rounded-lg p-1.5 text-slate-700 hover:bg-pink-50"
-              aria-label="Abrir menú"
+              aria-label="Open menu"
               id="header-mobile-menu-btn"
             >
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -156,7 +156,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCv, onOpenCodeDetails }) =
                 className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-pink-500 to-rose-500 py-2.5 text-sm font-semibold text-white shadow-sm"
               >
                 <Download className="h-4 w-4" />
-                <span>Descargar CV Completo</span>
+                <span>Download Full CV</span>
               </button>
             </div>
           </div>

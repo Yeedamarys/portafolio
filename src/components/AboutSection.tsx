@@ -13,14 +13,14 @@ export const AboutSection: React.FC = () => {
           {/* Subtle background decorative shapes */}
           <div className="absolute top-0 right-0 -mt-8 -mr-8 w-48 h-48 bg-pink-100/50 rounded-full blur-3xl pointer-events-none"></div>
 
-          {/* Header Row: Icon + "Sobre mí" + ✨💖 */}
+          {/* Header Row: Icon + "About Me" + ✨💖 */}
           <div className="flex items-center justify-between gap-4 mb-6">
             <div className="flex items-center gap-3">
               <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-pink-100/80 text-pink-600 shadow-sm">
                 <User className="h-5 w-5" />
               </div>
               <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-heading">
-                Sobre mí
+                About Me
               </h2>
             </div>
             
@@ -33,12 +33,8 @@ export const AboutSection: React.FC = () => {
 
           {/* Body Text */}
           <div className="space-y-4 text-slate-700 text-sm sm:text-base leading-relaxed mb-8">
-            <p>
-              Desarrolladora Full Stack con experiencia entregando módulos administrativos y sitios web en producción, integrando arquitecturas limpias, autenticación, y servicios en la nube (Cloudinary).
-            </p>
-            <p>
-              He trabajado en la personalización de plataformas ERP (Odoo), el desarrollo de paneles administrativos en tiempo real y la implementación de facturación electrónica conectada al SRI.
-            </p>
+            <p>{PERSONAL_INFO.aboutSummary[0]}</p>
+            <p>{PERSONAL_INFO.aboutSummary[1]}</p>
           </div>
 
           {/* Highlight Callout Box matching Mockup 2 & 4 */}
@@ -51,7 +47,7 @@ export const AboutSection: React.FC = () => {
           {/* Footer Signature Row matching mockup */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 border-t border-pink-100/80">
             <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-              Firma Profesional
+              Professional Signature
             </span>
 
             {/* Handwritten Signature */}

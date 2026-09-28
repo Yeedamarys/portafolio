@@ -43,13 +43,13 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({
           {/* Overlay gradient & Tag */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex items-end p-4">
             <div className="glass-pill px-3 py-1.5 rounded-full text-xs font-semibold text-slate-900 border border-white/90 shadow-md">
-              <span className="text-pink-600 font-bold">Arquitectura Limpia</span> • Producción Real
+              <span className="text-pink-600 font-bold">Clean Architecture</span> • Real Production
             </div>
           </div>
         </div>
       </div>
 
-      {/* Proyectos Destacados List Card matching Mockup 4 */}
+      {/* Featured Projects List Card matching Mockup 4 */}
       <div className="glass-panel relative rounded-3xl p-6 sm:p-7 shadow-lg border border-pink-200/90 flex-1 flex flex-col justify-between">
         <div>
           {/* Header */}
@@ -59,9 +59,9 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({
             </div>
             <div>
               <h2 className="text-lg sm:text-xl font-bold tracking-tight text-slate-900 font-heading">
-                Proyectos destacados
+                Featured Projects
               </h2>
-              <p className="text-xs text-pink-600 font-medium">Soluciones de Alto Impacto</p>
+              <p className="text-xs text-pink-600 font-medium">High Impact Solutions</p>
             </div>
           </div>
 
@@ -109,7 +109,7 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({
             className="w-full flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-pink-500 via-rose-500 to-fuchsia-500 py-3 px-5 text-xs sm:text-sm font-semibold text-white shadow-md shadow-pink-300 transition-all hover:from-pink-600 hover:to-fuchsia-600 hover:shadow-lg hover:scale-[1.01] active:scale-[0.98]"
             id="featured-view-more-btn"
           >
-            <span>Ver más proyectos</span>
+            <span>View More Projects</span>
             <ArrowRight className="h-4 w-4" />
           </button>
         </div>

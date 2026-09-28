@@ -29,7 +29,7 @@ export const Footer: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => soundFx.playChime('hover')}
-              aria-label="GitHub de Damarys León"
+              aria-label="GitHub of Damarys León"
               className="flex h-9 w-9 items-center justify-center rounded-full bg-pink-50 text-slate-700 hover:bg-pink-100 hover:text-pink-600 transition-all"
             >
               <Github className="h-4 w-4" />
@@ -40,7 +40,7 @@ export const Footer: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => soundFx.playChime('hover')}
-              aria-label="LinkedIn de Damarys León"
+              aria-label="LinkedIn of Damarys León"
               className="flex h-9 w-9 items-center justify-center rounded-full bg-pink-50 text-slate-700 hover:bg-pink-100 hover:text-pink-600 transition-all"
             >
               <Linkedin className="h-4 w-4" />
@@ -51,7 +51,7 @@ export const Footer: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => soundFx.playChime('hover')}
-              aria-label="Instagram de Damarys León"
+              aria-label="Instagram of Damarys León"
               className="flex h-9 w-9 items-center justify-center rounded-full bg-pink-50 text-slate-700 hover:bg-pink-100 hover:text-pink-600 transition-all"
             >
               <Instagram className="h-4 w-4" />
@@ -60,7 +60,7 @@ export const Footer: React.FC = () => {
             <a
               href={`mailto:${PERSONAL_INFO.email}`}
               onClick={() => soundFx.playChime('hover')}
-              aria-label="Enviar correo"
+              aria-label="Send email"
               className="flex h-9 w-9 items-center justify-center rounded-full bg-pink-50 text-slate-700 hover:bg-pink-100 hover:text-pink-600 transition-all"
             >
               <Mail className="h-4 w-4" />
@@ -85,9 +85,9 @@ export const Footer: React.FC = () => {
 
         {/* Bottom subtle note */}
         <div className="mt-6 pt-4 border-t border-pink-100/60 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-400">
-          <p>© {new Date().getFullYear()} Damarys León. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} Damarys León. All rights reserved.</p>
           <p className="flex items-center gap-1">
-            Hecho con <Heart className="h-3 w-3 fill-pink-500 text-pink-500" /> React, Node.js, Express, TypeScript & Tailwind CSS
+            Made with <Heart className="h-3 w-3 fill-pink-500 text-pink-500" /> React, Node.js, Express, TypeScript & Tailwind CSS
           </p>
         </div>
 

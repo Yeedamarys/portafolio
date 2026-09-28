@@ -5,11 +5,11 @@ import { SkillItem } from '../types';
 import { soundFx } from '../utils/audioChimes';
 
 export const SkillsSection: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<string>('Todos');
+  const [activeCategory, setActiveCategory] = useState<string>('All');
 
-  const categories = ['Todos', 'Frontend', 'Backend', 'Mobile', 'Patrones', 'Cloud', 'Data & Ops'];
+  const categories = ['All', 'Frontend', 'Backend', 'Mobile', 'Patterns', 'Cloud', 'Data & Ops', 'Methodologies'];
 
-  const filteredSkills = activeCategory === 'Todos'
+  const filteredSkills = activeCategory === 'All'
     ? SKILLS
     : SKILLS.filter(s => s.category.toLowerCase().includes(activeCategory.toLowerCase()));
 
@@ -47,9 +47,9 @@ export const SkillsSection: React.FC = () => {
           </div>
           <div>
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-heading">
-              Habilidades Técnicas
+              Technical Skills
             </h2>
-            <p className="text-xs text-pink-600 font-medium">Stack & Tecnologías</p>
+            <p className="text-xs text-pink-600 font-medium">Stack & Technologies</p>
           </div>
         </div>
 
@@ -121,9 +121,9 @@ export const SkillsSection: React.FC = () => {
 
       <div className="mt-4 pt-3 border-t border-pink-100/60 flex items-center justify-between text-xs text-slate-500">
         <span className="flex items-center gap-1 text-pink-600 font-medium">
-          <Sparkles className="h-3.5 w-3.5" /> Código limpio & escalabilidad
+          <Sparkles className="h-3.5 w-3.5" /> Clean Code & Scalability
         </span>
-        <span>{filteredSkills.length} tecnologías</span>
+        <span>{filteredSkills.length} technologies</span>
       </div>
 
     </div>

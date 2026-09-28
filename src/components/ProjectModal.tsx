@@ -43,7 +43,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             onClose();
           }}
           className="absolute top-5 right-5 flex h-9 w-9 items-center justify-center rounded-full bg-pink-50 text-slate-500 hover:bg-pink-100 hover:text-pink-700 transition-all"
-          aria-label="Cerrar modal"
+          aria-label="Close modal"
           id="project-modal-close-btn"
         >
           <X className="h-5 w-5" />
@@ -99,7 +99,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
           <div>
             <h3 className="text-sm font-bold uppercase tracking-wider text-slate-800 mb-3 flex items-center gap-2">
               <Sparkles className="h-4 w-4 text-pink-500" />
-              Aspectos Técnicos Destacados
+              Technical Highlights
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {current.highlights.map((item, idx) => (
@@ -117,7 +117,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
           {/* Technologies Stack Badges */}
           <div>
             <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
-              Tecnologías Implementadas
+              Technologies Implemented
             </h3>
             <div className="flex flex-wrap gap-2">
               {current.technologies.map((tech) => (
@@ -134,7 +134,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
           {/* Footer Call to Action */}
           <div className="pt-4 border-t border-pink-100 flex flex-wrap items-center justify-between gap-4">
             <p className="text-xs text-slate-500">
-              ¿Quieres conocer el repositorio o la demo en vivo?
+              Would you like to explore the repository or live demo?
             </p>
             <a
               href="#contacto"
@@ -144,7 +144,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               }}
               className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 px-5 py-2.5 text-xs sm:text-sm font-bold text-white shadow-sm hover:from-pink-600 hover:to-rose-600 transition-all"
             >
-              <span>Conversar sobre este proyecto</span>
+              <span>Discuss this project</span>
               <ExternalLink className="h-4 w-4" />
             </a>
           </div>

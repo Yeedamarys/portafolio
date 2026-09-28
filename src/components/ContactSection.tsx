@@ -33,7 +33,7 @@ export const ContactSection: React.FC = () => {
 
       if (response.ok) {
         setStatus('success');
-        setFeedbackMsg(data.message || '¡Mensaje enviado con éxito!');
+        setFeedbackMsg(data.message || 'Message sent successfully!');
         soundFx.playChime('success');
         confetti({
           particleCount: 60,
@@ -44,12 +44,12 @@ export const ContactSection: React.FC = () => {
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
         setStatus('error');
-        setFeedbackMsg(data.error || 'Ocurrió un error al enviar tu mensaje.');
+        setFeedbackMsg(data.error || 'An error occurred while sending your message.');
       }
     } catch {
       // Fallback in client
       setStatus('success');
-      setFeedbackMsg('¡Gracias por comunicarte! Tu mensaje ha sido registrado exitosamente.');
+      setFeedbackMsg('Thank you for reaching out! Your message has been received successfully.');
       soundFx.playChime('success');
       confetti({
         particleCount: 50,
@@ -73,13 +73,13 @@ export const ContactSection: React.FC = () => {
             <div className="lg:col-span-5 space-y-6">
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-pink-600 bg-pink-50 px-3 py-1 rounded-full border border-pink-200/60 inline-flex items-center gap-1.5">
-                  <Sparkles className="h-3 w-3" /> Contacto Directo
+                  <Sparkles className="h-3 w-3" /> Direct Contact
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2 font-heading tracking-tight">
-                  ¿Hablamos de nuevas oportunidades?
+                  Let's discuss new opportunities
                 </h2>
                 <p className="text-sm text-slate-600 mt-2 leading-relaxed">
-                  Estoy disponible para incorporarme como Desarrolladora Full Stack. Escríbeme por WhatsApp, correo o a través del formulario.
+                  I am available to join as a Full Stack Developer. Reach out via WhatsApp, email, or through the contact form below.
                 </p>
               </div>
 
@@ -96,7 +96,7 @@ export const ContactSection: React.FC = () => {
                     <MessageSquare className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-xs font-semibold text-slate-500">WhatsApp Inmediato</p>
+                    <p className="text-xs font-semibold text-slate-500">Instant WhatsApp</p>
                     <p className="text-sm font-bold text-slate-800 group-hover:text-emerald-600 transition-colors">
                       {PERSONAL_INFO.phone}
                     </p>
@@ -112,7 +112,7 @@ export const ContactSection: React.FC = () => {
                     <Mail className="h-5 w-5" />
                   </div>
                   <div className="truncate">
-                    <p className="text-xs font-semibold text-slate-500">Correo Electrónico</p>
+                    <p className="text-xs font-semibold text-slate-500">Email Address</p>
                     <p className="text-sm font-bold text-slate-800 group-hover:text-pink-600 transition-colors truncate">
                       {PERSONAL_INFO.email}
                     </p>
@@ -124,7 +124,7 @@ export const ContactSection: React.FC = () => {
                     <MapPin className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-xs font-semibold text-slate-500">Ubicación</p>
+                    <p className="text-xs font-semibold text-slate-500">Location</p>
                     <p className="text-sm font-bold text-slate-800">
                       {PERSONAL_INFO.location}
                     </p>
@@ -140,12 +140,12 @@ export const ContactSection: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                      Tu Nombre *
+                      Your Name *
                     </label>
                     <input
                       type="text"
                       required
-                      placeholder="Ej. Carolina Gómez"
+                      placeholder="e.g. Jane Doe"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full rounded-xl border border-pink-200 bg-white/95 px-4 py-2.5 text-sm text-slate-800 shadow-sm focus:border-pink-500 focus:outline-none focus:ring-2 focus:ring-pink-200 transition-all"
@@ -155,12 +155,12 @@ export const ContactSection: React.FC = () => {
 
                   <div>
                     <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                      Correo Electrónico *
+                      Email Address *
                     </label>
                     <input
                       type="email"
                       required
-                      placeholder="nombre@empresa.com"
+                      placeholder="name@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full rounded-xl border border-pink-200 bg-white/95 px-4 py-2.5 text-sm text-slate-800 shadow-sm focus:border-pink-500 focus:outline-none focus:ring-2 focus:ring-pink-200 transition-all"
@@ -171,11 +171,11 @@ export const ContactSection: React.FC = () => {
 
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Asunto / Empresa
+                    Subject / Company
                   </label>
                   <input
                     type="text"
-                    placeholder="Ej. Oportunidad Full Stack / Propuesta de Proyecto"
+                    placeholder="e.g. Full Stack Opportunity / Project Proposal"
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                     className="w-full rounded-xl border border-pink-200 bg-white/95 px-4 py-2.5 text-sm text-slate-800 shadow-sm focus:border-pink-500 focus:outline-none focus:ring-2 focus:ring-pink-200 transition-all"
@@ -185,12 +185,12 @@ export const ContactSection: React.FC = () => {
 
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Mensaje *
+                    Message *
                   </label>
                   <textarea
                     required
                     rows={4}
-                    placeholder="Cuéntame sobre el rol, los requerimientos de tu equipo o tu idea..."
+                    placeholder="Tell me about the role, team requirements, or your project idea..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full rounded-xl border border-pink-200 bg-white/95 px-4 py-2.5 text-sm text-slate-800 shadow-sm focus:border-pink-500 focus:outline-none focus:ring-2 focus:ring-pink-200 transition-all resize-none"
@@ -221,11 +221,11 @@ export const ContactSection: React.FC = () => {
                   {status === 'loading' ? (
                     <span className="flex items-center gap-2">
                       <span className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                      Enviando mensaje...
+                      Sending message...
                     </span>
                   ) : (
                     <>
-                      <span>Enviar Mensaje a Damarys</span>
+                      <span>Send Message to Damarys</span>
                       <Send className="h-4 w-4" />
                     </>
                   )}

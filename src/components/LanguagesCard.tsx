@@ -18,9 +18,9 @@ export const LanguagesCard: React.FC = () => {
           </div>
           <div>
             <h2 className="text-xl font-bold tracking-tight text-slate-900 font-heading">
-              Idiomas
+              Languages
             </h2>
-            <p className="text-xs text-pink-600 font-medium">Comunicación Global</p>
+            <p className="text-xs text-pink-600 font-medium">Global Communication</p>
           </div>
         </div>
 
@@ -60,7 +60,7 @@ export const LanguagesCard: React.FC = () => {
             referrerPolicy="no-referrer"
           />
           <div className="absolute bottom-2 left-2 right-2 glass-pill px-2.5 py-1 rounded-xl text-center text-[10px] font-bold text-slate-700 shadow-sm border border-white/90">
-            <span className="text-pink-600">Enfoque</span> • Deep Work & Colaboración
+            <span className="text-pink-600">Focus</span> • Deep Work & Collaboration
           </div>
         </div>
       </div>

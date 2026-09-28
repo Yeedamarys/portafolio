@@ -21,9 +21,9 @@ export const EducationSection: React.FC = () => {
                   </div>
                   <div>
                     <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-heading">
-                      Educación
+                      Education
                     </h2>
-                    <p className="text-xs text-pink-600 font-medium">Formación Universitaria</p>
+                    <p className="text-xs text-pink-600 font-medium">University Background</p>
                   </div>
                 </div>
 
@@ -59,8 +59,8 @@ export const EducationSection: React.FC = () => {
 
               {/* Status footer pill */}
               <div className="mt-6 pt-4 border-t border-pink-100/80 flex items-center justify-between text-xs text-slate-500">
-                <span className="font-semibold text-slate-700">Universidad de Excelencia</span>
-                <span className="text-pink-600 font-bold">8vo Nivel En Curso</span>
+                <span className="font-semibold text-slate-700">Top Tier University</span>
+                <span className="text-pink-600 font-bold">8th Semester In Progress</span>
               </div>
 
             </div>
@@ -90,7 +90,7 @@ export const EducationSection: React.FC = () => {
                   <div className="mt-3 flex items-center gap-2">
                     <Heart className="h-5 w-5 fill-pink-500 text-pink-500 animate-pulse" />
                     <span className="text-xs font-bold uppercase tracking-wider text-slate-600">
-                      Filosofía & Vocación Tecnológica
+                      Philosophy & Technological Vocation
                     </span>
                   </div>
                 </div>

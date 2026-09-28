@@ -74,7 +74,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenCv, onViewProjec
                   </span>
                 </div>
 
-                {/* Pill: Disponible para trabajar */}
+                {/* Pill: Available for work */}
                 <div className="glass-pill flex items-center gap-2 rounded-full px-3.5 py-1.5 shadow-sm border border-pink-200/80">
                   <span className="h-2 w-2 rounded-full bg-pink-500 animate-pulse"></span>
                   <span className="text-xs sm:text-sm font-semibold text-pink-900/90 whitespace-nowrap">
@@ -86,7 +86,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenCv, onViewProjec
               {/* Greeting */}
               <div className="mb-2">
                 <span className="text-sm sm:text-base font-semibold text-pink-600 tracking-wide flex items-center gap-1.5">
-                  Hola, soy <span className="inline-block animate-wave origin-bottom-right">👋</span>
+                  Hello, I'm <span className="inline-block animate-wave origin-bottom-right">👋</span>
                 </span>
               </div>
 
@@ -95,7 +95,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenCv, onViewProjec
                 Damarys <span className="bg-gradient-to-r from-pink-500 via-rose-500 to-fuchsia-600 bg-clip-text text-transparent">León</span>
               </h1>
 
-              {/* Subheading: DESARROLLADORA FULL STACK */}
+              {/* Subheading: FULL STACK DEVELOPER */}
               <h2 className="text-xs sm:text-sm font-bold tracking-wider text-pink-600 uppercase mb-4">
                 {PERSONAL_INFO.title}
               </h2>
@@ -142,15 +142,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenCv, onViewProjec
 
                   <button
                     onClick={copyEmail}
-                    title="Copiar correo"
+                    title="Copy email"
                     className="shrink-0 rounded-lg px-2.5 py-1 text-xs font-semibold text-pink-600 bg-pink-50 hover:bg-pink-100 transition-all border border-pink-200/60"
                   >
                     {copiedEmail ? (
                       <span className="flex items-center gap-1 text-emerald-600 font-bold">
-                        <Check className="h-3 w-3" /> Copiado
+                        <Check className="h-3 w-3" /> Copied
                       </span>
                     ) : (
-                      'Copiar'
+                      'Copy'
                     )}
                   </button>
                 </div>
@@ -158,7 +158,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenCv, onViewProjec
 
               {/* Action Buttons matching mockup */}
               <div className="flex flex-wrap sm:flex-nowrap items-center gap-3.5 pt-2">
-                {/* Ver proyectos ↗ */}
+                {/* View Projects */}
                 <button
                   onClick={() => {
                     soundFx.playChime('click');
@@ -167,11 +167,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenCv, onViewProjec
                   className="w-full sm:w-1/2 flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-pink-500 via-pink-600 to-rose-600 px-5 py-3 text-sm font-semibold text-white shadow-md shadow-pink-300 transition-all hover:from-pink-600 hover:to-rose-700 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
                   id="hero-projects-btn"
                 >
-                  <span>Ver proyectos</span>
+                  <span>View Projects</span>
                   <ExternalLink className="h-4 w-4" />
                 </button>
 
-                {/* Descargar CV */}
+                {/* Download CV */}
                 <button
                   onClick={() => {
                     soundFx.playChime('open');
@@ -181,7 +181,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenCv, onViewProjec
                   id="hero-cv-btn"
                 >
                   <Download className="h-4 w-4 text-pink-500" />
-                  <span>Descargar CV</span>
+                  <span>Download CV</span>
                 </button>
               </div>
             </div>
@@ -230,7 +230,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenCv, onViewProjec
                   </div>
                   <div>
                     <p className="text-[11px] font-bold text-pink-600 leading-tight">Big dreams, Better code</p>
-                    <p className="text-[10px] text-slate-500">Full Stack & Soluciones</p>
+                    <p className="text-[10px] text-slate-500">Full Stack & Solutions</p>
                   </div>
                 </div>
 

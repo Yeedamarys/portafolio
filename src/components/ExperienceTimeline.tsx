@@ -14,9 +14,9 @@ export const ExperienceTimeline: React.FC = () => {
         </div>
         <div>
           <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-heading">
-            Experiencia Profesional
+            Professional Experience
           </h2>
-          <p className="text-xs text-pink-600 font-medium">Trayectoria & Entregas en Producción</p>
+          <p className="text-xs text-pink-600 font-medium">Career & Production Deliveries</p>
         </div>
       </div>
 
