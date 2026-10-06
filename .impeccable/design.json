@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-06T00:00:00Z",
+  "title": "Design System: Damarys León, Full Stack Developer",
+  "extensions": {
+    "colorMeta": {
+      "neon": { "role": "primary", "displayName": "Neon Pink", "canonical": "oklch(69.9% 0.228 351.4)", "tonalRamp": ["oklch(15% 0.119 351.4)", "oklch(26% 0.191 351.4)", "oklch(38% 0.228 351.4)", "oklch(50% 0.228 351.4)", "oklch(62% 0.228 351.4)", "oklch(74% 0.191 351.4)", "oklch(85% 0.119 351.4)", "oklch(95% 0.041 351.4)"] },
+      "neon-soft": { "role": "primary", "displayName": "Soft Neon", "canonical": "oklch(78.7% 0.151 347.8)", "tonalRamp": ["oklch(15% 0.079 347.8)", "oklch(26% 0.127 347.8)", "oklch(38% 0.151 347.8)", "oklch(50% 0.151 347.8)", "oklch(62% 0.151 347.8)", "oklch(74% 0.127 347.8)", "oklch(85% 0.079 347.8)", "oklch(95% 0.027 347.8)"] },
+      "chrome": { "role": "secondary", "displayName": "Chrome Silver", "canonical": "oklch(87.7% 0.017 304.8)", "tonalRamp": ["oklch(15% 0.009 304.8)", "oklch(26% 0.014 304.8)", "oklch(38% 0.017 304.8)", "oklch(50% 0.017 304.8)", "oklch(62% 0.017 304.8)", "oklch(74% 0.014 304.8)", "oklch(85% 0.009 304.8)", "oklch(95% 0.003 304.8)"] },
+      "mint": { "role": "tertiary", "displayName": "Signal Mint", "canonical": "oklch(86.6% 0.154 162.7)", "tonalRamp": ["oklch(15% 0.080 162.7)", "oklch(26% 0.129 162.7)", "oklch(38% 0.154 162.7)", "oklch(50% 0.154 162.7)", "oklch(62% 0.154 162.7)", "oklch(74% 0.129 162.7)", "oklch(85% 0.080 162.7)", "oklch(95% 0.028 162.7)"] },
+      "night": { "role": "neutral", "displayName": "Night Wine", "canonical": "oklch(16.5% 0.03 341.8)", "tonalRamp": ["oklch(15% 0.016 341.8)", "oklch(26% 0.025 341.8)", "oklch(38% 0.030 341.8)", "oklch(50% 0.030 341.8)", "oklch(62% 0.030 341.8)", "oklch(74% 0.025 341.8)", "oklch(85% 0.016 341.8)", "oklch(95% 0.005 341.8)"] },
+      "ink": { "role": "neutral", "displayName": "Blush Ink", "canonical": "oklch(95.4% 0.027 348.3)", "tonalRamp": ["oklch(15% 0.014 348.3)", "oklch(26% 0.023 348.3)", "oklch(38% 0.027 348.3)", "oklch(50% 0.027 348.3)", "oklch(62% 0.027 348.3)", "oklch(74% 0.023 348.3)", "oklch(85% 0.014 348.3)", "oklch(95% 0.005 348.3)"] },
+      "ink-soft": { "role": "neutral", "displayName": "Rose Ink", "canonical": "oklch(86.9% 0.048 345.1)", "tonalRamp": ["oklch(15% 0.025 345.1)", "oklch(26% 0.040 345.1)", "oklch(38% 0.048 345.1)", "oklch(50% 0.048 345.1)", "oklch(62% 0.048 345.1)", "oklch(74% 0.040 345.1)", "oklch(85% 0.025 345.1)", "oklch(95% 0.009 345.1)"] },
+      "ink-muted": { "role": "neutral", "displayName": "Mauve Ink", "canonical": "oklch(73.1% 0.058 343.9)", "tonalRamp": ["oklch(15% 0.030 343.9)", "oklch(26% 0.049 343.9)", "oklch(38% 0.058 343.9)", "oklch(50% 0.058 343.9)", "oklch(62% 0.058 343.9)", "oklch(74% 0.049 343.9)", "oklch(85% 0.030 343.9)", "oklch(95% 0.010 343.9)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The name in the identity tile only; last name in neon." },
+      "headline": { "displayName": "Headline", "purpose": "Projects tile heading and dialog titles." },
+      "title": { "displayName": "Title", "purpose": "Every other tile heading and the active project name." },
+      "body": { "displayName": "Body", "purpose": "Paragraphs, capped at 54-68ch; 1.125rem in the hero." },
+      "label": { "displayName": "Label", "purpose": "Buttons, tabs, nav, field labels, subheads. No uppercase tracking." },
+      "signature": { "displayName": "Signature", "purpose": "Used once: the name at the end of About, rotated -2deg, neon." }
+    },
+    "shadows": [
+      { "name": "glass-rest", "value": "inset 0 1px 0 rgba(255,233,243,0.08), 0 24px 48px -28px rgba(0,0,0,0.85)", "purpose": "Every tile and the header bar." },
+      { "name": "glass-lit", "value": "inset 0 1px 0 rgba(255,209,234,0.25), 0 22px 60px -30px rgba(255,79,174,0.6), 0 24px 48px -28px rgba(0,0,0,0.85)", "purpose": "Focal tiles only: identity, monogram, projects." },
+      { "name": "neon-button-glow", "value": "0 10px 30px -12px rgba(255,79,174,0.9)", "purpose": "Primary buttons." },
+      { "name": "dialog", "value": "0 40px 80px -30px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,79,174,0.12)", "purpose": "Glass dialogs over a rgba(11,3,8,0.75) blurred backdrop." }
+    ],
+    "materials": [
+      { "name": "glass", "value": "background: linear-gradient(160deg, rgba(62,22,47,0.5), rgba(31,11,25,0.46)); backdrop-filter: blur(16px) saturate(140%); border: 1px solid rgba(255,79,174,0.3); border-top-color: rgba(255,143,203,0.5)", "purpose": "All tiles, header bar, mobile menu. Blur 10px / saturate 130% under 640px." },
+      { "name": "glass-lit", "value": "border-color: rgba(255,79,174,0.55); border-top-color: rgba(255,143,203,0.8)", "purpose": "Focal tile edge, paired with the glass-lit shadow." },
+      { "name": "bg-grid", "value": "linear-gradient(rgba(255,79,174,0.075) 1px, transparent 1px), linear-gradient(90deg, rgba(255,79,174,0.075) 1px, transparent 1px); background-size: 56px 56px", "purpose": "Fixed page background only, radially masked, with two radial glows; owner-requested and native to the world." }
+    ],
+    "motion": [
+      { "name": "duration-instant", "value": "80ms", "purpose": "Dialog content fade on exit." },
+      { "name": "duration-fast", "value": "180ms", "purpose": "Backdrop fades, tab panel exit, reduced-motion fades." },
+      { "name": "duration-normal", "value": "350ms", "purpose": "Dialog grow/shrink, tab panel enter." },
+      { "name": "duration-slow", "value": "600ms", "purpose": "Page-load tile entrance (rise 16px + fade)." },
+      { "name": "ease-smooth", "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Entrances." },
+      { "name": "ease-sharp", "value": "cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "Exits." },
+      { "name": "stagger", "value": "60ms", "purpose": "One orchestrated page-load stagger across tiles." },
+      { "name": "spring-snappy", "value": "stiffness 300, damping 30", "purpose": "Selected tab pill slide." },
+      { "name": "spring-pointer", "value": "stiffness 150, damping 18, mass 0.6", "purpose": "Tile tilt and glare." },
+      { "name": "tilt-max", "value": "3.5deg", "purpose": "Tile pointer tilt, fine pointers only, perspective 1400px." },
+      { "name": "press-scale", "value": "0.97", "purpose": "Button :active; none with reduced motion." },
+      { "name": "swipe-threshold", "value": "60px offset or 400px/s", "purpose": "Project panel swipe on coarse pointers." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single main action in a tile: see projects, details, contact form, send.",
+      "html": "<button class=\"ds-btn-primary\">Ver proyectos <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 5v14\"/><path d=\"m19 12-7 7-7-7\"/></svg></button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; border: 0; border-radius: 9999px; padding: 12px 20px; background: var(--color-neon, #ff4fae); color: var(--color-night, #170912); font: 600 14px/20px 'Hanken Grotesk Variable', system-ui, sans-serif; box-shadow: 0 10px 30px -12px rgba(255,79,174,0.9); cursor: pointer; transition: background-color 200ms, transform 200ms; } .ds-btn-primary:hover { background: var(--color-neon-soft, #ff8fcb); } .ds-btn-primary:active { transform: scale(0.97); } .ds-btn-primary:focus-visible { outline: 2px solid var(--color-neon-soft, #ff8fcb); outline-offset: 3px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Companion actions: CV, live site, code, prev/next.",
+      "html": "<button class=\"ds-btn-secondary\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z\"/><path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/></svg> Ver CV</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; gap: 8px; border-radius: 9999px; padding: 12px 20px; border: 1px solid rgba(217,212,224,0.35); background: rgba(255,255,255,0.04); color: var(--color-ink, #ffe9f3); font: 600 14px/20px 'Hanken Grotesk Variable', system-ui, sans-serif; cursor: pointer; transition: background-color 200ms, border-color 200ms, transform 200ms; } .ds-btn-secondary:hover { border-color: rgba(217,212,224,0.7); background: rgba(255,255,255,0.08); } .ds-btn-secondary:active { transform: scale(0.97); } .ds-btn-secondary:focus-visible { outline: 2px solid var(--color-neon-soft, #ff8fcb); outline-offset: 3px; }"
+    },
+    {
+      "name": "Technology Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Static technology tag inside project tiles and dialogs.",
+      "html": "<ul class=\"ds-chips\"><li class=\"ds-chip\">React</li><li class=\"ds-chip\">Node.js</li><li class=\"ds-chip\">Odoo 17</li></ul>",
+      "css": ".ds-chips { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; } .ds-chip { border-radius: 8px; border: 1px solid rgba(255,79,174,0.2); background: rgba(255,79,174,0.08); padding: 4px 10px; color: var(--color-ink-soft, #ecc8db); font: 600 12px/16px 'Hanken Grotesk Variable', system-ui, sans-serif; }"
+    },
+    {
+      "name": "Project Tabs",
+      "kind": "nav",
+      "refersTo": "tab-selected",
+      "description": "Pill track of project tabs; the neon pill slides to the selected tab.",
+      "html": "<div class=\"ds-tabs\" role=\"tablist\"><button class=\"ds-tab\" role=\"tab\" aria-selected=\"true\">SRI</button><button class=\"ds-tab\" role=\"tab\" aria-selected=\"false\">Odoo</button><button class=\"ds-tab\" role=\"tab\" aria-selected=\"false\">Web</button><button class=\"ds-tab\" role=\"tab\" aria-selected=\"false\">Flutter</button></div>",
+      "css": ".ds-tabs { display: inline-flex; gap: 4px; padding: 4px; border-radius: 9999px; border: 1px solid rgba(255,79,174,0.2); background: rgba(0,0,0,0.25); } .ds-tab { border: 0; border-radius: 9999px; padding: 6px 14px; background: transparent; color: var(--color-ink-soft, #ecc8db); font: 600 14px/20px 'Hanken Grotesk Variable', system-ui, sans-serif; cursor: pointer; transition: color 150ms, background-color 150ms; } .ds-tab:hover { color: var(--color-ink, #ffe9f3); } .ds-tab[aria-selected=\"true\"] { background: var(--color-neon, #ff4fae); color: var(--color-night, #170912); } .ds-tab:focus-visible { outline: 2px solid var(--color-neon-soft, #ff8fcb); outline-offset: 3px; }"
+    },
+    {
+      "name": "Glass Tile",
+      "kind": "card",
+      "refersTo": "tile",
+      "description": "Smoked glass container, top edge lit brighter; add ds-tile-lit only for focal tiles.",
+      "html": "<section class=\"ds-tile ds-tile-lit\"><h2 class=\"ds-tile-title\">Proyectos</h2><p class=\"ds-tile-body\">Facturación electrónica firmada y validada con el SRI.</p></section>",
+      "css": ".ds-tile { position: relative; border-radius: 28px; padding: 28px; background: linear-gradient(160deg, rgba(62,22,47,0.5), rgba(31,11,25,0.46)); backdrop-filter: blur(16px) saturate(140%); -webkit-backdrop-filter: blur(16px) saturate(140%); border: 1px solid rgba(255,79,174,0.3); border-top-color: rgba(255,143,203,0.5); box-shadow: inset 0 1px 0 rgba(255,233,243,0.08), 0 24px 48px -28px rgba(0,0,0,0.85); color: var(--color-ink, #ffe9f3); } .ds-tile-lit { border-radius: 32px; border-color: rgba(255,79,174,0.55); border-top-color: rgba(255,143,203,0.8); box-shadow: inset 0 1px 0 rgba(255,209,234,0.25), 0 22px 60px -30px rgba(255,79,174,0.6), 0 24px 48px -28px rgba(0,0,0,0.85); } .ds-tile-title { margin: 0; font: 600 24px/1.25 'Unbounded Variable', system-ui, sans-serif; letter-spacing: -0.02em; } .ds-tile-body { margin: 16px 0 0; max-width: 60ch; color: var(--color-ink-soft, #ecc8db); font: 400 16px/1.625 'Hanken Grotesk Variable', system-ui, sans-serif; }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Contact form field with label above and neon focus ring.",
+      "html": "<label class=\"ds-label\" for=\"ds-name\">Nombre <span class=\"ds-req\">(obligatorio)</span></label><input class=\"ds-input\" id=\"ds-name\" placeholder=\"Tu nombre\">",
+      "css": ".ds-label { display: block; margin-bottom: 6px; color: var(--color-ink-soft, #ecc8db); font: 600 14px/20px 'Hanken Grotesk Variable', system-ui, sans-serif; } .ds-req { font-weight: 400; color: var(--color-ink-muted, #c39ab1); } .ds-input { width: 100%; border-radius: 12px; border: 1px solid rgba(255,79,174,0.25); background: rgba(0,0,0,0.3); padding: 10px 16px; color: var(--color-ink, #ffe9f3); font: 400 16px/24px 'Hanken Grotesk Variable', system-ui, sans-serif; transition: border-color 150ms, box-shadow 150ms; } .ds-input::placeholder { color: var(--color-ink-muted, #c39ab1); } .ds-input:focus { outline: none; border-color: var(--color-neon, #ff4fae); box-shadow: 0 0 0 2px rgba(255,79,174,0.3); }"
+    },
+    {
+      "name": "Header Bar",
+      "kind": "nav",
+      "refersTo": "lang-toggle-selected",
+      "description": "Sticky glass bar: initials badge, anchors, ES/EN toggle, compact CV pill.",
+      "html": "<header class=\"ds-bar\"><span class=\"ds-badge\">DL</span><nav class=\"ds-nav\"><a href=\"#\">Proyectos</a><a href=\"#\">Experiencia</a><a href=\"#\">Contacto</a></nav><div class=\"ds-lang\"><button aria-pressed=\"true\">ES</button><button aria-pressed=\"false\">EN</button></div><button class=\"ds-cv\">CV</button></header>",
+      "css": ".ds-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 16px; border-radius: 16px; background: linear-gradient(160deg, rgba(62,22,47,0.5), rgba(31,11,25,0.46)); backdrop-filter: blur(16px) saturate(140%); border: 1px solid rgba(255,79,174,0.3); border-top-color: rgba(255,143,203,0.5); box-shadow: inset 0 1px 0 rgba(255,233,243,0.08), 0 24px 48px -28px rgba(0,0,0,0.85); font-family: 'Hanken Grotesk Variable', system-ui, sans-serif; } .ds-badge { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 12px; border: 1px solid rgba(255,79,174,0.5); color: var(--color-neon-soft, #ff8fcb); font: 600 14px 'Unbounded Variable', system-ui, sans-serif; } .ds-nav { display: flex; gap: 4px; } .ds-nav a { padding: 6px 12px; border-radius: 8px; color: var(--color-ink-soft, #ecc8db); font-size: 14px; text-decoration: none; transition: color 150ms, background-color 150ms; } .ds-nav a:hover { color: var(--color-ink, #ffe9f3); background: rgba(255,255,255,0.06); } .ds-lang { display: flex; padding: 2px; border-radius: 9999px; border: 1px solid rgba(217,212,224,0.25); } .ds-lang button { border: 0; border-radius: 9999px; padding: 4px 10px; background: transparent; color: var(--color-ink-soft, #ecc8db); font: 700 12px/16px inherit; cursor: pointer; } .ds-lang button[aria-pressed=\"true\"] { background: var(--color-chrome, #d9d4e0); color: var(--color-night, #170912); } .ds-cv { border: 0; border-radius: 9999px; padding: 8px 14px; background: var(--color-neon, #ff4fae); color: var(--color-night, #170912); font: 700 12px/16px inherit; cursor: pointer; } .ds-cv:hover { background: var(--color-neon-soft, #ff8fcb); } .ds-bar :focus-visible { outline: 2px solid var(--color-neon-soft, #ff8fcb); outline-offset: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Vitrina de cristal",
+    "overview": "The whole page is one glass display case. Tiles of smoked pink glass with thin neon edges sit on a night-wine ground over a faint pink grid, sized by importance so name, offer, projects and the CV action read in the first desktop viewport. The case is lit from above: every tile's top edge is brighter than its sides, and the three focal tiles (identity, monogram, projects) carry a stronger edge and a pink glow cast downward.\n\nDensity is high but calm: a 12-column bento, 20px gutters, generous tile padding, one accent hue doing almost all the work. The 3D smoked-glass DL monogram is the one sculptural object; everything else is flat type on glass. Motion is physical and small: tiles tilt toward the pointer, the monogram follows it on a spring, dialogs grow out of the element that opened them.\n\nIt rejects the long stack of full-width sections, the split hero, and rows of equal cards.",
+    "keyCharacteristics": [
+      "Night-wine ground, smoked pink glass tiles, 1px neon edges lit brighter on top.",
+      "One accent family (neon pink) plus one cool counterpoint (chrome silver); mint is status only.",
+      "Unbounded display over Hanken Grotesk text; Caveat appears once, as the signature.",
+      "Radius scales with tile size (32 / 28 / 24px).",
+      "Bilingual ES/EN with identical layout; nothing invented, no placeholder proof."
+    ],
+    "rules": [
+      { "name": "The One Hue Rule", "body": "Every surface, neutral and line is a tint of the wine-pink hue; chrome is the only cool note and mint the only off-hue color, reserved for status.", "section": "colors" },
+      { "name": "The Dark Text On Neon Rule", "body": "Neon and chrome fills always carry night text, never white.", "section": "colors" },
+      { "name": "The Paper Exception", "body": "The CV dialog is a printable white sheet (white panel, slate text, Tailwind pink-700 accents) so it prints and reads as a document. That sub-palette lives only inside the CV.", "section": "colors" },
+      { "name": "The Two Voices Rule", "body": "Unbounded for names, headings and the few display accents; Hanken Grotesk for everything read as information. Caveat appears exactly once.", "section": "typography" },
+      { "name": "The Tabular Dates Rule", "body": "Periods and counters use tabular figures.", "section": "typography" },
+      { "name": "The Lit From Above Rule", "body": "Glass edges are 1px neon; the top edge is always brighter than the sides (50% vs 30% at rest, 80% vs 55% lit).", "section": "elevation" },
+      { "name": "The Three Lit Tiles Rule", "body": "Only the focal tiles (identity, monogram, projects) get the lit treatment; adding it elsewhere flattens the hierarchy.", "section": "elevation" },
+      { "name": "The Grid Behind Glass Rule", "body": "The faint two-axis pink grid (56px cells, 7.5% alpha, radially masked) is native to this world, requested by the owner, and lives only in the fixed background and the 3D monogram's refraction backdrop.", "section": "elevation" },
+      { "name": "The Reduced Motion Rule", "body": "With prefers-reduced-motion: no tilt, glare, parallax, slides, rise, press scale or dialog growth; fades shorten to 150-180ms; smooth scrolling off; the monogram stays the static SVG.", "section": "components" }
+    ],
+    "dos": [
+      "Do build every new block as a glass tile in the 12-col bento, sized by importance, radius matched to its size (32 / 28 / 24px).",
+      "Do keep the lit treatment to the three focal tiles and the top-edge-brighter rule on all glass.",
+      "Do use neon for the single primary action in a tile and secondary pills for the rest.",
+      "Do open details as a dialog that grows from the element that triggered it, with the full focus contract.",
+      "Do gate any new motion on reduced motion and any new 3D on the monogram's load and run rules.",
+      "Do write every string in both ES and EN and keep the layout identical across languages."
+    ],
+    "donts": [
+      "Don't stack full-width sections, split heroes, or rows of identical cards.",
+      "Don't add new hues; tint any new neutral toward the wine-pink hue and keep mint for status.",
+      "Don't put white text on neon or chrome fills.",
+      "Don't nest boxed cards inside tiles; separate inner columns with hairlines.",
+      "Don't add uppercase eyebrow labels or kickers above headings.",
+      "Don't invent proof (screenshots, metrics, demos, repos) that does not exist.",
+      "Don't let the 3D block content or load before the page is idle."
+    ]
+  }
+}

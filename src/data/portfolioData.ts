@@ -1,226 +1,522 @@
-import { Project, SkillItem, WorkExperience, Education, Language } from '../types';
+import { Content, Lang } from '../types';
 
-export const PERSONAL_INFO = {
-  name: "Damarys León",
-  initials: "DL",
-  title: "Full Stack Developer",
-  shortRole: "FULL STACK DEV",
-  tagline: "I build digital solutions that combine technology, creativity, and purpose.",
-  location: "Quito, Ecuador",
-  phone: "+593 995515379",
-  whatsappUrl: "https://wa.me/593995515379?text=Hello%20Damarys,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20an%20opportunity",
-  email: "damarysleon88@gmail.com",
-  status: "Available for work",
-  linkedin: "https://www.linkedin.com/in/damarys-leon",
-  github: "https://github.com/Yeedamarys",
-  instagram: "https://instagram.com/damarys.dev",
-  quote: "Technology can also be a way to create a better world",
-  aboutSummary: [
-    "Full Stack Developer with experience delivering administrative modules and production websites, integrating clean architectures, authentication, and cloud services (Cloudinary).",
-    "I have worked on customizing ERP platforms (Odoo), developing real-time admin panels, and implementing electronic invoicing connected to the SRI."
+// Facts that don't change between languages.
+export const SHARED = {
+  name: 'Damarys León',
+  firstName: 'Damarys',
+  lastName: 'León',
+  initials: 'DL',
+  phone: '+593 995515379',
+  whatsappNumber: '593995515379',
+  email: 'damarysleon88@gmail.com',
+  linkedin: 'https://www.linkedin.com/in/damarys-leon',
+  github: 'https://github.com/Yeedamarys',
+  instagram: 'https://instagram.com/damarys.dev',
+};
+
+export const whatsappUrl = (message: string) =>
+  `https://wa.me/${SHARED.whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+const en: Content = {
+  meta: {
+    title: 'Damarys León - Full Stack Developer',
+  },
+  personal: {
+    title: 'Full Stack Developer',
+    offer: "I build electronic invoicing connected to Ecuador's SRI, admin dashboards, and Odoo modules.",
+    tagline: 'I build digital solutions that combine technology, creativity, and purpose.',
+    location: 'Quito, Ecuador',
+    status: 'Available for work',
+    aboutSummary: [
+      'Full Stack Developer with experience delivering administrative modules and production websites, integrating clean architectures, authentication, and cloud services (Cloudinary).',
+      'I have worked on customizing ERP platforms (Odoo), developing real-time admin panels, and implementing electronic invoicing connected to the SRI.',
+    ],
+    jobObjective:
+      'Seeking a junior/semi-senior Full Stack Development role where I can contribute maintainable and product-oriented code.',
+    quote: 'Technology can also be a way to create a better world',
+    whatsappMessage: 'Hello Damarys, I saw your portfolio and would like to discuss an opportunity',
+  },
+  projects: [
+    {
+      id: 'proj-narubi',
+      short: 'Narubi',
+      title: 'Invoicing & POS System',
+      subtitle: 'SRI Electronic Signature & Admin Module',
+      companyOrContext: 'Narubi',
+      period: 'September 2026',
+      category: 'Full Stack',
+      outcome:
+        "Businesses issue invoices that are signed electronically and validated directly with Ecuador's SRI, from one admin dashboard.",
+      myRole: 'Full Stack Developer',
+      description:
+        "Comprehensive electronic invoicing and Point of Sale (POS) system with legal issuance connected to Ecuador's SRI (Internal Revenue Service) web services. Features a dynamic product catalog, inventory management, transaction auditing, and sales analytics dashboard.",
+      highlights: [
+        'XML digital electronic signature with timestamping and direct online validation with SRI.',
+        'Robust authentication based on JSON Web Tokens (JWT) and decoupled clean architecture.',
+        'Optimized media management with Cloudinary CDN for receipts and catalog assets.',
+        'Agile development lifecycle managed and documented in sprints using Jira.',
+      ],
+      technologies: ['Node.js', 'Express', 'React', 'TypeScript', 'SRI Web Services', 'Cloudinary', 'JWT', 'PostgreSQL'],
+    },
+    {
+      id: 'proj-perfor',
+      short: 'Perfor',
+      title: 'Corporate Website & Real-Time CMS',
+      subtitle: 'Corporate portal with self-manageable admin panel',
+      companyOrContext: 'Perfor Construcciones',
+      period: 'August 2026',
+      category: 'Full Stack',
+      outcome:
+        'The company updates its own texts, images, contact details and location in real time, without calling a developer.',
+      myRole: 'Full Stack Developer',
+      description:
+        'Corporate web platform designed to highlight engineering and drilling projects. Includes an internal CMS enabling managers to update content, geolocated headquarters, completed projects, and photo galleries in real time without technical deployments.',
+      highlights: [
+        'Reactive administrative panel featuring real-time editing of text, location maps, and contact details.',
+        'Automated image compression and upload pipeline via Cloudinary API.',
+        'Responsive design, with images served through Cloudinary to keep pages light.',
+        'Extensible modular architecture for adding new service types.',
+      ],
+      technologies: ['React', 'JavaScript', 'Tailwind CSS', 'Node.js', 'Cloudinary', 'REST API'],
+    },
+    {
+      id: 'proj-sodi',
+      short: 'SODI',
+      title: 'ERP Admin Module (Odoo 17)',
+      subtitle: 'Process customization and data optimization',
+      companyOrContext: 'SODI CORP S.A.S',
+      period: '2025',
+      category: 'ERP',
+      outcome: "Custom Odoo 17 views and models that fit the company's internal administrative processes.",
+      myRole: 'Full Stack Developer',
+      description:
+        'Customization and implementation of tailored administrative modules within the Odoo 17 ecosystem for corporate management. Restructured workflows, document control, and record consistency.',
+      highlights: [
+        'Development of custom views and models adapted to internal business logic.',
+        'Optimization of PostgreSQL data query reliability and consistency.',
+        'User interface modernization to streamline daily administrative operations.',
+      ],
+      technologies: ['Python', 'Odoo 17', 'PostgreSQL', 'XML / QWeb', 'JavaScript'],
+    },
+    {
+      id: 'proj-mobile',
+      short: 'Mobile app',
+      title: 'Mobile App with Clean Architecture',
+      subtitle: 'Flutter & Android Studio for field operations',
+      companyOrContext: 'Special Project',
+      period: '2025 - 2026',
+      category: 'Mobile',
+      outcome: 'A Flutter app for field operations that consumes a REST API and keeps data available offline with SQLite.',
+      description:
+        'Cross-platform mobile application built with Flutter adhering to strict Clean Architecture and SOLID principles, ensuring high scalability, layer decoupling, and efficient REST API consumption.',
+      highlights: [
+        'Clean layer separation: Domain (Use cases/Entities), Data (Repositories/DataSources), and Presentation (BLoC/Provider).',
+        'Smooth RESTful endpoint consumption and local storage with SQLite.',
+        'Intuitive UI with micro-interactions on Android and iOS.',
+      ],
+      technologies: ['Flutter', 'Dart', 'Android Studio', 'Clean Architecture', 'SOLID', 'REST API'],
+    },
   ],
-  jobObjective: "Seeking a junior/semi-senior Full Stack Development role where I can contribute maintainable and product-oriented code."
+  skills: [
+    { id: 'skill-frontend', category: 'Frontend', name: 'React & JavaScript', detail: 'Tailwind CSS, Bootstrap' },
+    { id: 'skill-backend', category: 'Backend', name: 'Node.js & Express', detail: 'Laravel, Spring Boot' },
+    { id: 'skill-mobile', category: 'Mobile', name: 'Flutter', detail: 'Android Studio' },
+    { id: 'skill-cloud', category: 'Cloud', name: 'REST API & Cloudinary', detail: 'Cloud services, SRI invoicing' },
+    { id: 'skill-data', category: 'Data & Ops', name: 'PostgreSQL, MySQL, MongoDB', detail: 'Docker, CI/CD, Git/GitHub, phpMyAdmin' },
+    { id: 'skill-languages', category: 'Languages', name: 'Java, JavaScript, Python', detail: 'C#, C++' },
+    { id: 'skill-patterns', category: 'Patterns', name: 'Clean Architecture', detail: 'SOLID, Clean Code' },
+    { id: 'skill-agile', category: 'Methodologies', name: 'Scrum, Kanban', detail: 'Jira, sprints, agile workflows' },
+  ],
+  // Newest first
+  experiences: [
+    {
+      id: 'exp-narubi',
+      period: 'September 2026',
+      company: 'Narubi',
+      project: 'Invoicing System / POS',
+      role: 'Full Stack Developer',
+      responsibilities: [
+        'Developed the admin dashboard for the invoicing system and Point of Sale (POS).',
+        'Implemented electronic signatures connected to SRI web services for invoice generation.',
+        'Utilized REST APIs, Cloudinary, clean architecture, and JWT for secure authentication.',
+        'Collaborated under agile methodologies, managing workflows with Jira.',
+      ],
+    },
+    {
+      id: 'exp-perfor',
+      period: 'August 2026',
+      company: 'Perfor Construcciones',
+      project: 'Corporate Website & Real-Time CMS',
+      role: 'Full Stack Developer',
+      responsibilities: [
+        'Developed a corporate website featuring an informative section and an administrative module allowing real-time screen customization (images, content, contact info, location) and addition of new modules.',
+        'Integrated Cloudinary service to optimize image loading performance.',
+      ],
+    },
+    {
+      id: 'exp-sodi',
+      period: '2025',
+      company: 'SODI CORP S.A.S',
+      project: 'ERP Admin Module (Odoo 17)',
+      role: 'Full Stack Developer',
+      responsibilities: [
+        'Collaborated on design updates for the company website.',
+        'Developed and implemented features in the administrative module using Odoo 17.',
+        'Contributed to improving data organization and system reliability for internal administrative processes.',
+      ],
+    },
+  ],
+  education: {
+    degree: 'Software Engineering',
+    institution: 'Universidad de las Fuerzas Armadas ESPE',
+    period: '2022 - Present',
+    currentLevel: 'Eighth semester',
+    description:
+      'Academic training in software engineering, systems architecture, full stack development, advanced algorithms, databases, and agile methodologies.',
+  },
+  languages: [
+    { language: 'Spanish', level: 'Native' },
+    { language: 'English', level: 'B2 (Upper-Intermediate)' },
+  ],
+  ui: {
+    skip: 'Skip to content',
+    nav: {
+      label: 'Sections',
+      projects: 'Projects',
+      about: 'About me',
+      skills: 'Stack',
+      experience: 'Experience',
+      contact: 'Contact',
+      openMenu: 'Open menu',
+      closeMenu: 'Close menu',
+    },
+    lang: { label: 'Language' },
+    sound: { label: 'Sound effects' },
+    monogram: { label: 'Damarys León monogram in pink glass' },
+    hero: {
+      seeProjects: 'See projects',
+      writeMe: 'Write to me',
+    },
+    cv: {
+      button: 'CV',
+      open: 'View CV',
+      title: 'Curriculum Vitae',
+      print: 'Print / Save PDF',
+      json: 'JSON data',
+      close: 'Close CV',
+      profile: 'Professional profile',
+      experience: 'Work experience',
+      skills: 'Technical skills',
+      education: 'Education',
+      languages: 'Languages',
+      signature: 'Signature',
+    },
+    projects: {
+      heading: 'Projects',
+      tabsLabel: 'Choose a project',
+      myRole: 'My role',
+      details: 'See details',
+      live: 'Live demo',
+      code: 'Code',
+      codePrivate: 'Code not public',
+      codePrivateLong: "The code isn't public, but I can walk you through it.",
+      askAbout: 'Ask me about this project',
+      highlights: 'Technical highlights',
+      technologies: 'Technologies',
+      prev: 'Previous project',
+      next: 'Next project',
+      close: 'Close project details',
+      swipeHint: 'Swipe sideways to change project.',
+    },
+    skills: { heading: 'Stack' },
+    languages: { heading: 'Languages' },
+    experience: { heading: 'Experience', details: 'See responsibilities', close: 'Close experience details' },
+    about: { heading: 'About me' },
+    education: { heading: 'Education' },
+    contact: {
+      heading: "Let's discuss new opportunities",
+      intro: 'I am available to join as a Full Stack Developer. Reach out via WhatsApp, email, or the contact form.',
+      whatsapp: 'WhatsApp',
+      email: 'Email',
+      copy: 'Copy email',
+      copied: 'Email copied',
+      form: 'Send a message',
+      formTitle: 'Send me a message',
+      close: 'Close contact form',
+      name: 'Your name',
+      emailField: 'Your email',
+      subject: 'Subject or company',
+      message: 'Message',
+      namePlaceholder: 'e.g. Jane Doe',
+      emailPlaceholder: 'name@company.com',
+      subjectPlaceholder: 'e.g. Full Stack opportunity',
+      messagePlaceholder: 'Tell me about the role, the team, or your project idea',
+      send: 'Send message',
+      sending: 'Sending message…',
+      success: "Message sent. I'll reply to the email you entered.",
+      mailto: "Your email app should open with the message ready to send. If it didn't, write to {email}.",
+      error: "Your message couldn't be sent. Please email me directly at {email}.",
+      openMail: 'Open my email app with this message',
+      defaultSubject: 'Portfolio contact from {name}',
+      required: 'required',
+    },
+    footer: {
+      rights: 'All rights reserved.',
+      built: 'Built with React, TypeScript, Tailwind CSS and three.js.',
+    },
+  },
 };
 
-export const SKILLS: SkillItem[] = [
-  {
-    id: 'skill-flutter',
-    name: 'Flutter',
-    subtext: 'Android Studio',
-    category: 'Mobile',
-    iconType: 'mobile',
-    level: 85
+const es: Content = {
+  meta: {
+    title: 'Damarys León - Desarrolladora Full Stack',
   },
-  {
-    id: 'skill-clean-arch',
-    name: 'Clean Architecture',
-    subtext: 'SOLID, Clean Code',
-    category: 'Patterns',
-    iconType: 'layers',
-    level: 90
-  },
-  {
-    id: 'skill-node-express',
-    name: 'Node.js & Express',
-    subtext: 'Laravel, Spring Boot',
-    category: 'Backend',
-    iconType: 'server',
-    level: 92
-  },
-  {
-    id: 'skill-react-js',
-    name: 'React & JavaScript',
-    subtext: 'Tailwind CSS, Bootstrap',
-    category: 'Frontend',
-    iconType: 'monitor',
-    level: 95
-  },
-  {
-    id: 'skill-languages',
-    name: 'Java, JS, Python',
-    subtext: 'C#, C++',
-    category: 'Languages',
-    iconType: 'code',
-    level: 88
-  },
-  {
-    id: 'skill-rest-cloud',
-    name: 'REST API & Cloudinary',
-    subtext: 'Cloud Services, SRI Invoicing',
-    category: 'Cloud',
-    iconType: 'cloud',
-    level: 94
-  },
-  {
-    id: 'skill-data-ops',
-    name: 'PostgreSQL, MySQL, Mongo',
-    subtext: 'Docker, CI/CD, Git/GitHub, phpMyAdmin',
-    category: 'Data & Ops',
-    iconType: 'database',
-    level: 88
-  },
-  {
-    id: 'skill-agile',
-    name: 'Scrum, Kanban',
-    subtext: 'Jira, Sprints, Agile Workflows',
-    category: 'Methodologies',
-    iconType: 'users',
-    level: 92
-  }
-];
-
-export const EXPERIENCES: WorkExperience[] = [
-  {
-    id: 'exp-sodi',
-    year: '2025',
-    period: '2025',
-    company: 'SODI CORP S.A.S',
-    role: 'Full Stack Developer',
-    responsibilities: [
-      'Collaborated on design updates for the company website.',
-      'Developed and implemented features in the administrative module using Odoo 17.',
-      'Contributed to improving data organization and system reliability for internal administrative processes.'
-    ]
-  },
-  {
-    id: 'exp-perfor',
-    year: '2026',
-    period: 'August 2026',
-    company: 'Perfor Construcciones',
-    role: 'Full Stack Developer',
-    responsibilities: [
-      'Developed a corporate website featuring an informative section and an administrative module allowing real-time screen customization (images, content, contact info, location) and addition of new modules.',
-      'Integrated Cloudinary service to optimize image loading performance.'
-    ]
-  },
-  {
-    id: 'exp-narubi',
-    year: '2026',
-    period: 'September 2026',
-    company: 'Narubi — Invoicing System / POS',
-    role: 'Full Stack Developer',
-    responsibilities: [
-      'Developed the admin dashboard for the invoicing system and Point of Sale (POS).',
-      'Implemented electronic signatures connected to SRI web services for invoice generation.',
-      'Utilized REST APIs, Cloudinary, clean architecture, and JWT for secure authentication.',
-      'Collaborated under agile methodologies, managing workflows with Jira.'
-    ]
-  }
-];
-
-export const FEATURED_PROJECTS: Project[] = [
-  {
-    id: 'proj-narubi',
-    title: 'Invoicing & POS System',
-    subtitle: 'SRI Electronic Signature & Admin Module',
-    companyOrContext: 'Narubi',
-    period: 'September 2026',
-    category: 'Full Stack',
-    outcome: 'Businesses issue invoices that are signed electronically and validated directly with Ecuador\'s SRI, from one admin dashboard.',
-    myRole: 'Full Stack Developer',
-    description: 'Comprehensive electronic invoicing and Point of Sale (POS) system with legal issuance connected to Ecuador\'s SRI (Internal Revenue Service) web services. Features a dynamic product catalog, inventory management, transaction auditing, and sales analytics dashboard.',
-    highlights: [
-      'XML digital electronic signature with timestamping and direct online validation with SRI.',
-      'Robust authentication based on JSON Web Tokens (JWT) and decoupled clean architecture.',
-      'Optimized media management with Cloudinary CDN for receipts and catalog assets.',
-      'Agile development lifecycle managed and documented in sprints using Jira.'
+  personal: {
+    title: 'Desarrolladora Full Stack',
+    offer: 'Desarrollo facturación electrónica conectada al SRI, paneles administrativos y módulos de Odoo.',
+    tagline: 'Construyo soluciones digitales que combinan tecnología, creatividad y propósito.',
+    location: 'Quito, Ecuador',
+    status: 'Disponible para trabajar',
+    aboutSummary: [
+      'Desarrolladora Full Stack con experiencia entregando módulos administrativos y sitios web en producción, integrando arquitecturas limpias, autenticación y servicios en la nube (Cloudinary).',
+      'He trabajado en la personalización de plataformas ERP (Odoo), el desarrollo de paneles administrativos en tiempo real y la implementación de facturación electrónica conectada al SRI.',
     ],
-    technologies: ['Node.js', 'Express', 'React', 'TypeScript', 'SRI Web Services', 'Cloudinary', 'JWT', 'PostgreSQL'],
-    featured: true
+    jobObjective:
+      'Busco un puesto de Desarrolladora Full Stack junior/semi-senior donde pueda aportar código mantenible y orientado al producto.',
+    quote: 'La tecnología también puede ser una forma de crear un mundo mejor',
+    whatsappMessage: 'Hola Damarys, vi tu portafolio y me gustaría conversar sobre una oportunidad',
   },
-  {
-    id: 'proj-perfor',
-    title: 'Corporate Website & Real-Time CMS',
-    subtitle: 'Corporate portal with self-manageable admin panel',
-    companyOrContext: 'Perfor Construcciones',
-    period: 'August 2026',
-    category: 'Full Stack',
-    outcome: 'The company updates its own texts, images, contact details and location in real time, without calling a developer.',
-    myRole: 'Full Stack Developer',
-    description: 'High-speed corporate web platform designed to highlight engineering and drilling projects. Includes an internal CMS enabling managers to update content, geolocated headquarters, completed projects, and photo galleries in real time without technical deployments.',
-    highlights: [
-      'Reactive administrative panel featuring real-time editing of text, location maps, and contact details.',
-      'Automated image compression and upload pipeline via Cloudinary API.',
-      'Responsive design, with images served through Cloudinary to keep pages light.',
-      'Extensible modular architecture for adding new service types.'
-    ],
-    technologies: ['React', 'JavaScript', 'Tailwind CSS', 'Node.js', 'Cloudinary', 'REST API'],
-    featured: true
+  projects: [
+    {
+      id: 'proj-narubi',
+      short: 'Narubi',
+      title: 'Sistema de facturación y POS',
+      subtitle: 'Firma electrónica SRI y módulo administrativo',
+      companyOrContext: 'Narubi',
+      period: 'Septiembre 2026',
+      category: 'Full Stack',
+      outcome:
+        'Los negocios emiten facturas firmadas electrónicamente y validadas directamente con el SRI, desde un solo panel administrativo.',
+      myRole: 'Desarrolladora Full Stack',
+      description:
+        'Sistema completo de facturación electrónica y punto de venta (POS) con emisión legal conectada a los servicios web del SRI. Incluye catálogo dinámico de productos, gestión de inventario, auditoría de transacciones y panel de analítica de ventas.',
+      highlights: [
+        'Firma electrónica XML con sello de tiempo y validación en línea directa con el SRI.',
+        'Autenticación robusta con JSON Web Tokens (JWT) y arquitectura limpia desacoplada.',
+        'Gestión de imágenes optimizada con el CDN de Cloudinary para comprobantes y catálogo.',
+        'Ciclo de desarrollo ágil gestionado y documentado en sprints con Jira.',
+      ],
+      technologies: ['Node.js', 'Express', 'React', 'TypeScript', 'Servicios web del SRI', 'Cloudinary', 'JWT', 'PostgreSQL'],
+    },
+    {
+      id: 'proj-perfor',
+      short: 'Perfor',
+      title: 'Sitio corporativo y CMS en tiempo real',
+      subtitle: 'Portal corporativo con panel administrativo autogestionable',
+      companyOrContext: 'Perfor Construcciones',
+      period: 'Agosto 2026',
+      category: 'Full Stack',
+      outcome:
+        'La empresa actualiza sus propios textos, imágenes, datos de contacto y ubicación en tiempo real, sin llamar a un desarrollador.',
+      myRole: 'Desarrolladora Full Stack',
+      description:
+        'Plataforma web corporativa para mostrar proyectos de ingeniería y perforación. Incluye un CMS interno con el que los responsables actualizan contenido, sedes geolocalizadas, proyectos realizados y galerías de fotos en tiempo real, sin despliegues técnicos.',
+      highlights: [
+        'Panel administrativo reactivo con edición en tiempo real de textos, mapas de ubicación y datos de contacto.',
+        'Compresión y carga automática de imágenes mediante la API de Cloudinary.',
+        'Diseño adaptable, con imágenes servidas por Cloudinary para mantener las páginas livianas.',
+        'Arquitectura modular extensible para agregar nuevos tipos de servicio.',
+      ],
+      technologies: ['React', 'JavaScript', 'Tailwind CSS', 'Node.js', 'Cloudinary', 'REST API'],
+    },
+    {
+      id: 'proj-sodi',
+      short: 'SODI',
+      title: 'Módulo administrativo ERP (Odoo 17)',
+      subtitle: 'Personalización de procesos y optimización de datos',
+      companyOrContext: 'SODI CORP S.A.S',
+      period: '2025',
+      category: 'ERP',
+      outcome: 'Vistas y modelos de Odoo 17 a la medida de los procesos administrativos internos de la empresa.',
+      myRole: 'Desarrolladora Full Stack',
+      description:
+        'Personalización e implementación de módulos administrativos a la medida dentro del ecosistema Odoo 17 para la gestión corporativa. Se reestructuraron flujos de trabajo, control documental y consistencia de registros.',
+      highlights: [
+        'Desarrollo de vistas y modelos personalizados adaptados a la lógica de negocio interna.',
+        'Mejora de la fiabilidad y consistencia de las consultas de datos en PostgreSQL.',
+        'Modernización de la interfaz para agilizar las operaciones administrativas diarias.',
+      ],
+      technologies: ['Python', 'Odoo 17', 'PostgreSQL', 'XML / QWeb', 'JavaScript'],
+    },
+    {
+      id: 'proj-mobile',
+      short: 'App móvil',
+      title: 'App móvil con Clean Architecture',
+      subtitle: 'Flutter y Android Studio para operaciones de campo',
+      companyOrContext: 'Proyecto especial',
+      period: '2025 - 2026',
+      category: 'Móvil',
+      outcome:
+        'Una app en Flutter para operaciones de campo que consume una API REST y mantiene los datos disponibles sin conexión con SQLite.',
+      description:
+        'Aplicación móvil multiplataforma construida con Flutter siguiendo estrictamente Clean Architecture y los principios SOLID, para lograr escalabilidad, capas desacopladas y un consumo eficiente de APIs REST.',
+      highlights: [
+        'Separación clara de capas: Dominio (casos de uso/entidades), Datos (repositorios/fuentes de datos) y Presentación (BLoC/Provider).',
+        'Consumo fluido de endpoints REST y almacenamiento local con SQLite.',
+        'Interfaz intuitiva con microinteracciones en Android e iOS.',
+      ],
+      technologies: ['Flutter', 'Dart', 'Android Studio', 'Clean Architecture', 'SOLID', 'REST API'],
+    },
+  ],
+  skills: [
+    { id: 'skill-frontend', category: 'Frontend', name: 'React y JavaScript', detail: 'Tailwind CSS, Bootstrap' },
+    { id: 'skill-backend', category: 'Backend', name: 'Node.js y Express', detail: 'Laravel, Spring Boot' },
+    { id: 'skill-mobile', category: 'Móvil', name: 'Flutter', detail: 'Android Studio' },
+    { id: 'skill-cloud', category: 'Nube', name: 'REST API y Cloudinary', detail: 'Servicios en la nube, facturación SRI' },
+    { id: 'skill-data', category: 'Datos y DevOps', name: 'PostgreSQL, MySQL, MongoDB', detail: 'Docker, CI/CD, Git/GitHub, phpMyAdmin' },
+    { id: 'skill-languages', category: 'Lenguajes', name: 'Java, JavaScript, Python', detail: 'C#, C++' },
+    { id: 'skill-patterns', category: 'Patrones', name: 'Clean Architecture', detail: 'SOLID, Clean Code' },
+    { id: 'skill-agile', category: 'Metodologías', name: 'Scrum, Kanban', detail: 'Jira, sprints, flujos ágiles' },
+  ],
+  // Newest first
+  experiences: [
+    {
+      id: 'exp-narubi',
+      period: 'Septiembre 2026',
+      company: 'Narubi',
+      project: 'Sistema de facturación / Punto de venta',
+      role: 'Desarrolladora Full Stack',
+      responsibilities: [
+        'Desarrollé el panel administrativo del sistema de facturación y punto de venta.',
+        'Implementé la firma electrónica conectada con el SRI para la generación de facturas.',
+        'Utilicé REST API, Cloudinary, arquitectura limpia y JWT para la autenticación segura.',
+        'Colaboré bajo metodología ágil, gestionando el trabajo con Jira.',
+      ],
+    },
+    {
+      id: 'exp-perfor',
+      period: 'Agosto 2026',
+      company: 'Perfor Construcciones',
+      project: 'Sitio web empresarial y CMS en tiempo real',
+      role: 'Desarrolladora Full Stack',
+      responsibilities: [
+        'Desarrollé una página web con sección informativa y módulo administrativo donde el administrador modifica pantallas en tiempo real.',
+        'Permite gestionar imágenes, información, contacto, ubicación y agregar nuevos módulos dinámicamente.',
+        'Integré el servicio de Cloudinary para optimizar el rendimiento en la carga de imágenes.',
+      ],
+    },
+    {
+      id: 'exp-sodi',
+      period: '2025',
+      company: 'SODI CORP S.A.S',
+      project: 'Módulo administrativo ERP (Odoo 17)',
+      role: 'Desarrolladora Full Stack',
+      responsibilities: [
+        'Colaboré en las modificaciones de diseño de la página web de la empresa.',
+        'Desarrollé e implementé funciones en el módulo administrativo utilizando Odoo 17.',
+        'Contribuí a mejorar la organización de los datos y la fiabilidad del sistema para los procesos administrativos internos.',
+      ],
+    },
+  ],
+  education: {
+    degree: 'Ingeniería en Software',
+    institution: 'Universidad de las Fuerzas Armadas ESPE',
+    period: '2022 - Presente',
+    currentLevel: 'Octavo semestre',
+    description:
+      'Formación académica en ingeniería de software, arquitectura de sistemas, desarrollo full stack, algoritmos avanzados, bases de datos y metodologías ágiles.',
   },
-  {
-    id: 'proj-sodi',
-    title: 'ERP Admin Module (Odoo 17)',
-    subtitle: 'Process customization and data optimization',
-    companyOrContext: 'SODI CORP S.A.S',
-    period: '2025',
-    category: 'ERP',
-    outcome: 'Custom Odoo 17 views and models that fit the company\'s internal administrative processes.',
-    myRole: 'Full Stack Developer',
-    description: 'Customization and implementation of tailored administrative modules within the Odoo 17 ecosystem for corporate management. Restructured workflows, document control, and record consistency.',
-    highlights: [
-      'Development of custom views and models adapted to internal business logic.',
-      'Optimization of PostgreSQL data query reliability and consistency.',
-      'User interface modernization to streamline daily administrative operations.'
-    ],
-    technologies: ['Python', 'Odoo 17', 'PostgreSQL', 'XML / QWeb', 'JavaScript'],
-    featured: true
+  languages: [
+    { language: 'Español', level: 'Nativo' },
+    { language: 'Inglés', level: 'B2 (Intermedio alto)' },
+  ],
+  ui: {
+    skip: 'Saltar al contenido',
+    nav: {
+      label: 'Secciones',
+      projects: 'Proyectos',
+      about: 'Sobre mí',
+      skills: 'Stack',
+      experience: 'Experiencia',
+      contact: 'Contacto',
+      openMenu: 'Abrir menú',
+      closeMenu: 'Cerrar menú',
+    },
+    lang: { label: 'Idioma' },
+    sound: { label: 'Efectos de sonido' },
+    monogram: { label: 'Monograma de Damarys León en vidrio rosado' },
+    hero: {
+      seeProjects: 'Ver proyectos',
+      writeMe: 'Escríbeme',
+    },
+    cv: {
+      button: 'CV',
+      open: 'Ver CV',
+      title: 'Currículum',
+      print: 'Imprimir / Guardar PDF',
+      json: 'Datos JSON',
+      close: 'Cerrar CV',
+      profile: 'Perfil profesional',
+      experience: 'Experiencia laboral',
+      skills: 'Habilidades técnicas',
+      education: 'Educación',
+      languages: 'Idiomas',
+      signature: 'Firma',
+    },
+    projects: {
+      heading: 'Proyectos',
+      tabsLabel: 'Elige un proyecto',
+      myRole: 'Mi rol',
+      details: 'Ver detalles',
+      live: 'Ver demo',
+      code: 'Código',
+      codePrivate: 'Código no público',
+      codePrivateLong: 'El código no es público, pero puedo mostrártelo en una llamada.',
+      askAbout: 'Pregúntame por este proyecto',
+      highlights: 'Aspectos técnicos',
+      technologies: 'Tecnologías',
+      prev: 'Proyecto anterior',
+      next: 'Proyecto siguiente',
+      close: 'Cerrar detalles del proyecto',
+      swipeHint: 'Desliza hacia los lados para cambiar de proyecto.',
+    },
+    skills: { heading: 'Stack' },
+    languages: { heading: 'Idiomas' },
+    experience: { heading: 'Experiencia', details: 'Ver responsabilidades', close: 'Cerrar detalles de experiencia' },
+    about: { heading: 'Sobre mí' },
+    education: { heading: 'Educación' },
+    contact: {
+      heading: 'Conversemos sobre nuevas oportunidades',
+      intro: 'Estoy disponible para unirme como Desarrolladora Full Stack. Escríbeme por WhatsApp, correo o el formulario de contacto.',
+      whatsapp: 'WhatsApp',
+      email: 'Correo',
+      copy: 'Copiar correo',
+      copied: 'Correo copiado',
+      form: 'Enviar un mensaje',
+      formTitle: 'Envíame un mensaje',
+      close: 'Cerrar formulario de contacto',
+      name: 'Tu nombre',
+      emailField: 'Tu correo',
+      subject: 'Asunto o empresa',
+      message: 'Mensaje',
+      namePlaceholder: 'p. ej. Ana Pérez',
+      emailPlaceholder: 'nombre@empresa.com',
+      subjectPlaceholder: 'p. ej. Oportunidad Full Stack',
+      messagePlaceholder: 'Cuéntame sobre el puesto, el equipo o tu idea de proyecto',
+      send: 'Enviar mensaje',
+      sending: 'Enviando mensaje…',
+      success: 'Mensaje enviado. Te responderé al correo que escribiste.',
+      mailto: 'Tu aplicación de correo debería abrirse con el mensaje listo para enviar. Si no se abrió, escríbeme a {email}.',
+      error: 'No se pudo enviar tu mensaje. Escríbeme directamente a {email}.',
+      openMail: 'Abrir mi aplicación de correo con este mensaje',
+      defaultSubject: 'Contacto desde el portafolio: {name}',
+      required: 'obligatorio',
+    },
+    footer: {
+      rights: 'Todos los derechos reservados.',
+      built: 'Hecho con React, TypeScript, Tailwind CSS y three.js.',
+    },
   },
-  {
-    id: 'proj-mobile',
-    title: 'Mobile App with Clean Architecture',
-    subtitle: 'Flutter & Android Studio for field operations',
-    companyOrContext: 'Special Project',
-    period: '2025 - 2026',
-    category: 'Mobile',
-    outcome: 'A Flutter app for field operations that consumes a REST API and keeps data available offline with SQLite.',
-    description: 'Cross-platform mobile application built with Flutter adhering to strict Clean Architecture and SOLID principles, ensuring high scalability, layer decoupling, and efficient REST API consumption.',
-    highlights: [
-      'Clean layer separation: Domain (Use cases/Entities), Data (Repositories/DataSources), and Presentation (BLoC/Provider).',
-      'Smooth RESTful endpoint consumption and local storage with SQLite.',
-      'Intuitive UI with micro-interactions on Android and iOS.'
-    ],
-    technologies: ['Flutter', 'Dart', 'Android Studio', 'Clean Architecture', 'SOLID', 'REST API'],
-    featured: false
-  }
-];
-
-export const EDUCATION: Education = {
-  degree: 'Software Engineering',
-  institution: 'Universidad de las Fuerzas Armadas ESPE',
-  period: '2022 - Present',
-  currentLevel: 'Eighth Semester',
-  description: 'Rigorous academic training in software engineering, systems architecture, full stack development, advanced algorithms, databases, and agile methodologies at one of Ecuador\'s top prestigious universities.'
 };
 
-export const LANGUAGES: Language[] = [
-  {
-    language: 'Spanish',
-    level: 'Native',
-    percentage: 100
-  },
-  {
-    language: 'English',
-    level: 'B2 (Upper-Intermediate)',
-    percentage: 75
-  }
-];
+export const CONTENT: Record<Lang, Content> = { en, es };

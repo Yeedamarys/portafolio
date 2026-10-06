@@ -1,121 +1,132 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
+import { motion } from 'motion/react';
 import { Header } from './components/Header';
-import { Surreal3DCanvas } from './components/Surreal3DCanvas';
-import { HeroSection } from './components/HeroSection';
-import { AboutSection } from './components/AboutSection';
-import { SkillsSection } from './components/SkillsSection';
-import { LanguagesCard } from './components/LanguagesCard';
-import { ExperienceTimeline } from './components/ExperienceTimeline';
-import { FeaturedProjects } from './components/FeaturedProjects';
-import { GithubStatsCard } from './components/GithubStatsCard';
-import { EducationSection } from './components/EducationSection';
-import { ContactSection } from './components/ContactSection';
-import { Footer } from './components/Footer';
-import { ProjectModal } from './components/ProjectModal';
-import { CvModal } from './components/CvModal';
-import { Project } from './types';
+import { Background } from './components/ui';
+import {
+  AboutTile,
+  ContactTile,
+  EducationTile,
+  ExperienceTile,
+  IdentityTile,
+  LanguagesTile,
+  MonogramTile,
+  ProjectsTile,
+  SkillsTile,
+} from './components/tiles';
+import { ContactDialog, CvDialog, ExperienceDialog, ProjectDialog } from './components/dialogs';
+import { SHARED } from './data/portfolioData';
+import { LanguageProvider, useI18n } from './i18n/LanguageContext';
+import { motionTokens } from './lib/motion';
+import { soundFx } from './utils/audioChimes';
 
-export default function App() {
-  const [cvModalOpen, setCvModalOpen] = useState(false);
-  const [projectModalOpen, setProjectModalOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+type DialogType = 'project' | 'experience' | 'contact' | 'cv' | null;
 
-  const handleSelectProject = (project: Project) => {
-    setSelectedProject(project);
-    setProjectModalOpen(true);
+const Portfolio: React.FC = () => {
+  const { t } = useI18n();
+  const [dialog, setDialog] = useState<DialogType>(null);
+  const [origin, setOrigin] = useState<DOMRect | null>(null);
+  // Kept outside `dialog` so a closing dialog keeps its content during the exit animation.
+  const [projectIndex, setProjectIndex] = useState(0);
+  const [experienceIndex, setExperienceIndex] = useState(0);
+  const [contactSubject, setContactSubject] = useState('');
+
+  const open = (type: Exclude<DialogType, null>, from: DOMRect | null = null) => {
+    soundFx.playChime('open');
+    setOrigin(from);
+    setDialog(type);
   };
-
-  const handleViewProjectsScroll = () => {
-    const el = document.querySelector('#proyectos');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const close = useCallback(() => setDialog(null), []);
 
   return (
-    <div className="relative min-h-screen bg-[#FFF4F7] text-slate-800 selection:bg-pink-500 selection:text-white">
-      {/* 3D Surreal Particle Canvas */}
-      <Surreal3DCanvas />
+    <>
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-neon focus:px-4 focus:py-2 focus:font-semibold focus:text-night"
+      >
+        {t.ui.skip}
+      </a>
+      <Background />
+      <Header onOpenCv={(from) => open('cv', from)} />
 
-      {/* Main Content Wrap */}
-      <div className="relative z-10 flex flex-col min-h-screen">
-        
-        {/* Navigation Header */}
-        <Header
-          onOpenCv={() => setCvModalOpen(true)}
-          onOpenCodeDetails={handleViewProjectsScroll}
+      {/* One orchestrated entrance: tiles stagger in on load */}
+      <motion.main
+        id="main"
+        initial="hidden"
+        animate="visible"
+        variants={{ hidden: {}, visible: { transition: { staggerChildren: motionTokens.stagger } } }}
+        className="mx-auto grid max-w-[1320px] grid-cols-1 gap-4 px-4 pb-8 pt-4 sm:px-6 lg:grid-cols-12 lg:gap-5"
+      >
+        <IdentityTile
+          onOpenCv={(from) => open('cv', from)}
+          onOpenContact={(from) => {
+            setContactSubject('');
+            open('contact', from);
+          }}
         />
-
-        {/* Main Body */}
-        <main className="flex-1 space-y-8 sm:space-y-12">
-          
-          {/* 1. Hero Section */}
-          <HeroSection
-            onOpenCv={() => setCvModalOpen(true)}
-            onViewProjects={handleViewProjectsScroll}
+        {/* DOM order is the desktop order; on mobile, order-* classes move the monogram below the projects */}
+        <MonogramTile />
+        <ProjectsTile
+          onOpenProject={(index, from) => {
+            setProjectIndex(index);
+            open('project', from);
+          }}
+        />
+        {/* Stacked columns keep each row's two sides close in height; the last tile in a column fills it */}
+        <div className="order-4 flex flex-col gap-4 lg:order-none lg:col-span-4 lg:gap-5 [&>*:last-child]:flex-1">
+          {/* Languages first so "English B2" is visible in the first viewport */}
+          <LanguagesTile />
+          <EducationTile />
+        </div>
+        <div className="order-5 flex flex-col gap-4 lg:order-none lg:col-span-5 lg:gap-5 [&>*:last-child]:flex-1">
+          <ExperienceTile
+            onOpenExperience={(index, from) => {
+              setExperienceIndex(index);
+              open('experience', from);
+            }}
           />
+          <SkillsTile />
+        </div>
+        <div className="order-6 flex flex-col gap-4 lg:order-none lg:col-span-7 lg:gap-5 [&>*:last-child]:flex-1">
+          <AboutTile />
+          <ContactTile
+            onOpenContact={(from) => {
+              setContactSubject('');
+              open('contact', from);
+            }}
+          />
+        </div>
+      </motion.main>
 
-          {/* 2. Projects: first thing after the hero, since recruiters look for them first */}
-          <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 scroll-mt-24" id="proyectos">
-            <FeaturedProjects onSelectProject={handleSelectProject} />
-          </section>
+      <footer className="mx-auto flex max-w-[1320px] flex-wrap justify-between gap-2 px-4 pb-8 text-sm text-ink-muted sm:px-6">
+        <p>
+          © {new Date().getFullYear()} {SHARED.name}. {t.ui.footer.rights}
+        </p>
+        <p>{t.ui.footer.built}</p>
+      </footer>
 
-          {/* 3. Middle Row: About Me | Technical Skills | Languages */}
-          <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 items-stretch">
-              
-              {/* About Me */}
-              <div className="lg:col-span-4 flex flex-col">
-                <AboutSection />
-              </div>
-
-              {/* Technical Skills */}
-              <div className="lg:col-span-5 flex flex-col" id="habilidades">
-                <SkillsSection />
-              </div>
-
-              {/* Languages + 3D Headphones */}
-              <div className="md:col-span-2 lg:col-span-3 flex flex-col">
-                <LanguagesCard />
-              </div>
-
-            </div>
-          </section>
-
-          {/* 4. Professional Experience */}
-          <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 scroll-mt-24" id="experiencia">
-            <ExperienceTimeline />
-          </section>
-
-          {/* 4. GitHub Live Activity Widget (Matching reference image) */}
-          <GithubStatsCard />
-
-          {/* 5. Education & Surrealist Saturn Banner */}
-          <EducationSection />
-
-          {/* 6. Contact Form */}
-          <ContactSection />
-
-        </main>
-
-        {/* Footer */}
-        <Footer />
-
-      </div>
-
-      {/* Modals */}
-      <ProjectModal
-        isOpen={projectModalOpen}
-        selectedProject={selectedProject}
-        onClose={() => setProjectModalOpen(false)}
-        onSelectProject={(proj) => setSelectedProject(proj)}
+      <ProjectDialog
+        open={dialog === 'project'}
+        onClose={close}
+        origin={origin}
+        index={projectIndex}
+        onIndexChange={setProjectIndex}
+        onAsk={(title) => {
+          setContactSubject(title);
+          setOrigin(null);
+          setDialog('contact');
+        }}
       />
+      <ExperienceDialog open={dialog === 'experience'} onClose={close} origin={origin} index={experienceIndex} />
+      <ContactDialog open={dialog === 'contact'} onClose={close} origin={origin} initialSubject={contactSubject} />
+      <CvDialog open={dialog === 'cv'} onClose={close} origin={origin} />
+    </>
+  );
+};
 
-      <CvModal
-        isOpen={cvModalOpen}
-        onClose={() => setCvModalOpen(false)}
-      />
-
-    </div>
+export default function App() {
+  return (
+    <LanguageProvider>
+      <Portfolio />
+    </LanguageProvider>
   );
 }
