@@ -136,6 +136,8 @@ export const FEATURED_PROJECTS: Project[] = [
     companyOrContext: 'Narubi',
     period: 'September 2026',
     category: 'Full Stack',
+    outcome: 'Businesses issue invoices that are signed electronically and validated directly with Ecuador\'s SRI, from one admin dashboard.',
+    myRole: 'Full Stack Developer',
     description: 'Comprehensive electronic invoicing and Point of Sale (POS) system with legal issuance connected to Ecuador\'s SRI (Internal Revenue Service) web services. Features a dynamic product catalog, inventory management, transaction auditing, and sales analytics dashboard.',
     highlights: [
       'XML digital electronic signature with timestamping and direct online validation with SRI.',
@@ -153,11 +155,13 @@ export const FEATURED_PROJECTS: Project[] = [
     companyOrContext: 'Perfor Construcciones',
     period: 'August 2026',
     category: 'Full Stack',
+    outcome: 'The company updates its own texts, images, contact details and location in real time, without calling a developer.',
+    myRole: 'Full Stack Developer',
     description: 'High-speed corporate web platform designed to highlight engineering and drilling projects. Includes an internal CMS enabling managers to update content, geolocated headquarters, completed projects, and photo galleries in real time without technical deployments.',
     highlights: [
       'Reactive administrative panel featuring real-time editing of text, location maps, and contact details.',
       'Automated image compression and upload pipeline via Cloudinary API.',
-      'Highly responsive design optimized for Core Web Vitals performance (sub-second load time).',
+      'Responsive design, with images served through Cloudinary to keep pages light.',
       'Extensible modular architecture for adding new service types.'
     ],
     technologies: ['React', 'JavaScript', 'Tailwind CSS', 'Node.js', 'Cloudinary', 'REST API'],
@@ -170,6 +174,8 @@ export const FEATURED_PROJECTS: Project[] = [
     companyOrContext: 'SODI CORP S.A.S',
     period: '2025',
     category: 'ERP',
+    outcome: 'Custom Odoo 17 views and models that fit the company\'s internal administrative processes.',
+    myRole: 'Full Stack Developer',
     description: 'Customization and implementation of tailored administrative modules within the Odoo 17 ecosystem for corporate management. Restructured workflows, document control, and record consistency.',
     highlights: [
       'Development of custom views and models adapted to internal business logic.',
@@ -186,11 +192,12 @@ export const FEATURED_PROJECTS: Project[] = [
     companyOrContext: 'Special Project',
     period: '2025 - 2026',
     category: 'Mobile',
+    outcome: 'A Flutter app for field operations that consumes a REST API and keeps data available offline with SQLite.',
     description: 'Cross-platform mobile application built with Flutter adhering to strict Clean Architecture and SOLID principles, ensuring high scalability, layer decoupling, and efficient REST API consumption.',
     highlights: [
       'Clean layer separation: Domain (Use cases/Entities), Data (Repositories/DataSources), and Presentation (BLoC/Provider).',
       'Smooth RESTful endpoint consumption and local storage with SQLite.',
-      'Intuitive UI with micro-interactions running at 60fps on Android and iOS.'
+      'Intuitive UI with micro-interactions on Android and iOS.'
     ],
     technologies: ['Flutter', 'Dart', 'Android Studio', 'Clean Architecture', 'SOLID', 'REST API'],
     featured: false

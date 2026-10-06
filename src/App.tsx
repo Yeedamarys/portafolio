@@ -14,7 +14,6 @@ import { Footer } from './components/Footer';
 import { ProjectModal } from './components/ProjectModal';
 import { CvModal } from './components/CvModal';
 import { Project } from './types';
-import { FEATURED_PROJECTS } from './data/portfolioData';
 
 export default function App() {
   const [cvModalOpen, setCvModalOpen] = useState(false);
@@ -26,13 +25,8 @@ export default function App() {
     setProjectModalOpen(true);
   };
 
-  const handleViewAllProjects = () => {
-    setSelectedProject(FEATURED_PROJECTS[0]);
-    setProjectModalOpen(true);
-  };
-
   const handleViewProjectsScroll = () => {
-    const el = document.querySelector('#experiencia');
+    const el = document.querySelector('#proyectos');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
@@ -49,7 +43,7 @@ export default function App() {
         {/* Navigation Header */}
         <Header
           onOpenCv={() => setCvModalOpen(true)}
-          onOpenCodeDetails={handleViewAllProjects}
+          onOpenCodeDetails={handleViewProjectsScroll}
         />
 
         {/* Main Body */}
@@ -61,7 +55,12 @@ export default function App() {
             onViewProjects={handleViewProjectsScroll}
           />
 
-          {/* 2. Middle Row: About Me | Technical Skills | Languages */}
+          {/* 2. Projects: first thing after the hero, since recruiters look for them first */}
+          <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 scroll-mt-24" id="proyectos">
+            <FeaturedProjects onSelectProject={handleSelectProject} />
+          </section>
+
+          {/* 3. Middle Row: About Me | Technical Skills | Languages */}
           <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 items-stretch">
               
@@ -83,24 +82,9 @@ export default function App() {
             </div>
           </section>
 
-          {/* 3. Lower Row: Professional Experience | Featured Projects */}
-          <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" id="experiencia">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-              
-              {/* Professional Experience */}
-              <div className="lg:col-span-7 flex flex-col">
-                <ExperienceTimeline />
-              </div>
-
-              {/* Featured Projects */}
-              <div className="lg:col-span-5 flex flex-col" id="proyectos">
-                <FeaturedProjects
-                  onSelectProject={handleSelectProject}
-                  onViewAllProjects={handleViewAllProjects}
-                />
-              </div>
-
-            </div>
+          {/* 4. Professional Experience */}
+          <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 scroll-mt-24" id="experiencia">
+            <ExperienceTimeline />
           </section>
 
           {/* 4. GitHub Live Activity Widget (Matching reference image) */}

@@ -12,52 +12,65 @@ export const ContactSection: React.FC = () => {
     message: '',
   });
 
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'mailto' | 'error'>('idle');
   const [feedbackMsg, setFeedbackMsg] = useState('');
+
+  // Formspree form ID (e.g. "xyzabcd"), set in .env.local as VITE_FORMSPREE_ID.
+  const formspreeId = import.meta.env.VITE_FORMSPREE_ID;
+
+  const buildMailtoUrl = () => {
+    const subject = formData.subject || `Portfolio contact from ${formData.name}`;
+    const body = `${formData.message}\n\n${formData.name}\n${formData.email}`;
+    return `mailto:${PERSONAL_INFO.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
 
-    setStatus('loading');
     soundFx.playChime('click');
 
+    // Without a form service configured, hand the message to the visitor's email app.
+    if (!formspreeId) {
+      window.location.href = buildMailtoUrl();
+      setStatus('mailto');
+      setFeedbackMsg(`Your email app should open with the message ready to send. If it didn't, write to ${PERSONAL_INFO.email}.`);
+      return;
+    }
+
+    setStatus('loading');
+
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          _subject: formData.subject || `Portfolio contact from ${formData.name}`,
+          message: formData.message,
+        }),
       });
 
-      const data = await response.json();
-
-      if (response.ok) {
-        setStatus('success');
-        setFeedbackMsg(data.message || 'Message sent successfully!');
-        soundFx.playChime('success');
-        confetti({
-          particleCount: 60,
-          spread: 70,
-          origin: { y: 0.7 },
-          colors: ['#EC4899', '#F472B6', '#FB7185', '#F43F5E'],
-        });
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      } else {
-        setStatus('error');
-        setFeedbackMsg(data.error || 'An error occurred while sending your message.');
+      if (!response.ok) {
+        throw new Error(`Formspree responded with ${response.status}`);
       }
-    } catch {
-      // Fallback in client
+
       setStatus('success');
-      setFeedbackMsg('Thank you for reaching out! Your message has been received successfully.');
+      setFeedbackMsg("Message sent. I'll reply to the email you entered.");
       soundFx.playChime('success');
       confetti({
-        particleCount: 50,
-        spread: 60,
+        particleCount: 60,
+        spread: 70,
         origin: { y: 0.7 },
-        colors: ['#EC4899', '#F472B6', '#FB7185'],
+        colors: ['#EC4899', '#F472B6', '#FB7185', '#F43F5E'],
       });
       setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (err) {
+      // Keep what the visitor typed so nothing is lost, and point to a channel that works.
+      console.error('Contact form failed:', err);
+      setStatus('error');
+      setFeedbackMsg(`Your message couldn't be sent. Please email me directly at ${PERSONAL_INFO.email}.`);
     }
   };
 
@@ -198,19 +211,26 @@ export const ContactSection: React.FC = () => {
                   ></textarea>
                 </div>
 
-                {status === 'success' && (
-                  <div className="flex items-center gap-2 p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs sm:text-sm font-medium">
-                    <Check className="h-4 w-4 shrink-0 text-emerald-600" />
-                    <span>{feedbackMsg}</span>
-                  </div>
-                )}
+                <div aria-live="polite">
+                  {(status === 'success' || status === 'mailto') && (
+                    <div className="flex items-center gap-2 p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-medium">
+                      <Check className="h-4 w-4 shrink-0 text-emerald-700" />
+                      <span>{feedbackMsg}</span>
+                    </div>
+                  )}
 
-                {status === 'error' && (
-                  <div className="flex items-center gap-2 p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs sm:text-sm font-medium">
-                    <AlertCircle className="h-4 w-4 shrink-0 text-rose-600" />
-                    <span>{feedbackMsg}</span>
-                  </div>
-                )}
+                  {status === 'error' && (
+                    <div role="alert" className="flex items-start gap-2 p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-sm font-medium">
+                      <AlertCircle className="h-4 w-4 shrink-0 mt-0.5 text-rose-700" />
+                      <div className="space-y-1">
+                        <p>{feedbackMsg}</p>
+                        <a href={buildMailtoUrl()} className="font-bold underline underline-offset-2 hover:text-rose-900">
+                          Open my email app with this message
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                </div>
 
                 <button
                   type="submit"

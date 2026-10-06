@@ -21,10 +21,10 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCv, onOpenCodeDetails }) =
 
   const navItems = [
     { label: 'Home', href: '#inicio' },
-    { label: 'About Me', href: '#sobre-mi' },
-    { label: 'Experience', href: '#experiencia' },
-    { label: 'Skills', href: '#habilidades' },
     { label: 'Projects', href: '#proyectos' },
+    { label: 'About Me', href: '#sobre-mi' },
+    { label: 'Skills', href: '#habilidades' },
+    { label: 'Experience', href: '#experiencia' },
     { label: 'Education', href: '#educacion' },
     { label: 'Contact', href: '#contacto' },
   ];

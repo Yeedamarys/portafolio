@@ -21,16 +21,17 @@ export const ExperienceTimeline: React.FC = () => {
       </div>
 
       {/* Timeline List */}
-      <div className="relative pl-6 sm:pl-8 space-y-8 before:absolute before:left-2.5 sm:before:left-3 before:top-3 before:bottom-3 before:w-0.5 before:bg-gradient-to-b before:from-pink-500 before:via-rose-400 before:to-pink-200">
-        
+      {/* Vertical timeline on small screens; one column per job on wide screens, now that it spans the full width */}
+      <div className="relative pl-6 sm:pl-8 space-y-8 before:absolute before:left-2.5 sm:before:left-3 before:top-3 before:bottom-3 before:w-0.5 before:bg-gradient-to-b before:from-pink-500 before:via-rose-400 before:to-pink-200 lg:grid lg:grid-cols-3 lg:gap-8 lg:space-y-0 lg:pl-0 lg:before:hidden">
+
         {EXPERIENCES.map((exp) => (
           <div
             key={exp.id}
             onMouseEnter={() => soundFx.playChime('hover')}
-            className="group relative transition-all duration-300"
+            className="group relative transition-all duration-300 lg:border-t-2 lg:border-pink-300 lg:pt-5"
           >
             {/* Timeline Dot Marker matching mockup */}
-            <div className="absolute -left-[27px] sm:-left-[35px] top-1.5 flex h-5 w-5 items-center justify-center">
+            <div className="absolute -left-[27px] sm:-left-[35px] top-1.5 flex h-5 w-5 items-center justify-center lg:left-0 lg:-top-[11px]">
               <span className="h-3 w-3 rounded-full bg-pink-500 ring-4 ring-white shadow-sm transition-transform group-hover:scale-125 group-hover:bg-rose-600"></span>
             </div>
 

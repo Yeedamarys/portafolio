@@ -5,6 +5,8 @@ export interface Project {
   companyOrContext: string;
   period: string;
   category: 'Full Stack' | 'Frontend' | 'ERP' | 'Mobile';
+  outcome: string; // One plain sentence: what the project lets its users do
+  myRole?: string;
   description: string;
   highlights: string[];
   technologies: string[];

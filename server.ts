@@ -2,17 +2,6 @@ import express from "express";
 import path from "path";
 import { createServer as createViteServer } from "vite";
 
-interface ContactMessage {
-  id: string;
-  name: string;
-  email: string;
-  subject?: string;
-  message: string;
-  createdAt: string;
-}
-
-const contactMessages: ContactMessage[] = [];
-
 async function startServer() {
   const app = express();
   const PORT = 3000;
@@ -39,31 +28,6 @@ async function startServer() {
         university: "Universidad de las Fuerzas Armadas ESPE",
         period: "2022 - Presente (Octavo Nivel)",
       },
-    });
-  });
-
-  app.post("/api/contact", (req, res) => {
-    const { name, email, subject, message } = req.body;
-    if (!name || !email || !message) {
-      return res.status(400).json({ error: "Por favor complete nombre, correo y mensaje." });
-    }
-
-    const newMessage: ContactMessage = {
-      id: "msg_" + Date.now(),
-      name: String(name).trim(),
-      email: String(email).trim(),
-      subject: subject ? String(subject).trim() : "Contacto Portafolio",
-      message: String(message).trim(),
-      createdAt: new Date().toISOString(),
-    };
-
-    contactMessages.push(newMessage);
-    console.log(`[Contact] New inquiry from ${newMessage.name} <${newMessage.email}>`);
-
-    return res.status(200).json({
-      success: true,
-      message: "¡Gracias por comunicarte! He recibido tu mensaje y me pondré en contacto contigo a la brevedad.",
-      data: newMessage,
     });
   });
 
