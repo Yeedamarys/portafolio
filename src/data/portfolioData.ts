@@ -9,9 +9,9 @@ export const SHARED = {
   phone: '+593 995515379',
   whatsappNumber: '593995515379',
   email: 'damarysleon88@gmail.com',
-  linkedin: 'https://www.linkedin.com/in/damarys-leon',
+  linkedin: 'https://www.linkedin.com/in/melanie-le%C3%B3n-00b03b340/',
   github: 'https://github.com/Yeedamarys',
-  instagram: 'https://instagram.com/damarys.dev',
+  instagram: 'https://www.instagram.com/yeedamarys/',
 };
 
 export const whatsappUrl = (message: string) =>
