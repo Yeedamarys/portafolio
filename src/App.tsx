@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { motion } from 'motion/react';
+import { MotionConfig } from 'motion/react';
 import { Header } from './components/Header';
 import { Background } from './components/ui';
 import {
@@ -16,7 +16,6 @@ import {
 import { ContactDialog, CvDialog, ExperienceDialog, ProjectDialog } from './components/dialogs';
 import { SHARED } from './data/portfolioData';
 import { LanguageProvider, useI18n } from './i18n/LanguageContext';
-import { motionTokens } from './lib/motion';
 import { soundFx } from './utils/audioChimes';
 
 type DialogType = 'project' | 'experience' | 'contact' | 'cv' | null;
@@ -48,13 +47,10 @@ const Portfolio: React.FC = () => {
       <Background />
       <Header onOpenCv={(from) => open('cv', from)} />
 
-      {/* One orchestrated entrance: tiles stagger in on load */}
-      <motion.main
+      {/* Each tile reveals on entering the viewport. */}
+      <main
         id="main"
-        initial="hidden"
-        animate="visible"
-        variants={{ hidden: {}, visible: { transition: { staggerChildren: motionTokens.stagger } } }}
-        className="mx-auto grid max-w-[1320px] grid-cols-1 gap-4 px-4 pb-8 pt-4 sm:px-6 lg:grid-cols-12 lg:gap-5"
+        className="mx-auto grid max-w-[1320px] grid-cols-1 gap-5 px-4 pb-12 pt-6 sm:px-6 lg:grid-cols-12 lg:gap-6"
       >
         <IdentityTile
           onOpenCv={(from) => open('cv', from)}
@@ -72,12 +68,12 @@ const Portfolio: React.FC = () => {
           }}
         />
         {/* Stacked columns keep each row's two sides close in height; the last tile in a column fills it */}
-        <div className="order-4 flex flex-col gap-4 lg:order-none lg:col-span-4 lg:gap-5 [&>*:last-child]:flex-1">
+        <div className="order-4 flex flex-col gap-5 lg:order-none lg:col-span-4 lg:gap-6 [&>*:last-child]:flex-1">
           {/* Languages first so "English B2" is visible in the first viewport */}
           <LanguagesTile />
           <EducationTile />
         </div>
-        <div className="order-5 flex flex-col gap-4 lg:order-none lg:col-span-5 lg:gap-5 [&>*:last-child]:flex-1">
+        <div className="order-5 flex flex-col gap-5 lg:order-none lg:col-span-5 lg:gap-6 [&>*:last-child]:flex-1">
           <ExperienceTile
             onOpenExperience={(index, from) => {
               setExperienceIndex(index);
@@ -86,7 +82,7 @@ const Portfolio: React.FC = () => {
           />
           <SkillsTile />
         </div>
-        <div className="order-6 flex flex-col gap-4 lg:order-none lg:col-span-7 lg:gap-5 [&>*:last-child]:flex-1">
+        <div className="order-6 flex flex-col gap-5 lg:order-none lg:col-span-7 lg:gap-6 [&>*:last-child]:flex-1">
           <AboutTile />
           <ContactTile
             onOpenContact={(from) => {
@@ -95,7 +91,7 @@ const Portfolio: React.FC = () => {
             }}
           />
         </div>
-      </motion.main>
+      </main>
 
       <footer className="mx-auto flex max-w-[1320px] flex-wrap justify-between gap-2 px-4 pb-8 text-sm text-ink-muted sm:px-6">
         <p>
@@ -125,8 +121,10 @@ const Portfolio: React.FC = () => {
 
 export default function App() {
   return (
+    <MotionConfig reducedMotion="user">
     <LanguageProvider>
       <Portfolio />
     </LanguageProvider>
+    </MotionConfig>
   );
 }

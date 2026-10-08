@@ -231,6 +231,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ open, onClose, ori
             </label>
             <input
               id="contact-name"
+              name="name"
               data-autofocus=""
               type="text"
               required
@@ -247,6 +248,8 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ open, onClose, ori
             </label>
             <input
               id="contact-email"
+              name="email"
+              spellCheck={false}
               type="email"
               required
               autoComplete="email"
@@ -263,6 +266,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ open, onClose, ori
           </label>
           <input
             id="contact-subject"
+            name="subject"
             type="text"
             placeholder={ui.subjectPlaceholder}
             value={form.subject}
@@ -276,6 +280,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ open, onClose, ori
           </label>
           <textarea
             id="contact-message"
+            name="message"
             required
             rows={5}
             placeholder={ui.messagePlaceholder}

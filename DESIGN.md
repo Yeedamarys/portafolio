@@ -267,3 +267,21 @@ WCAG AA: every text token clears 7:1 on night except neon (6.3:1). Skip link to 
 - **Don't** add uppercase eyebrow labels or kickers above headings.
 - **Don't** invent proof (screenshots, metrics, demos, repos) that does not exist.
 - **Don't** let the 3D block content or load before the page is idle.
+
+
+## Visible refresh (October 2026)
+
+The identity tile now has a compact availability badge, two individually revealed name lines,
+a role line, a larger primary CTA with a circular arrow, and a separate location/contact row.
+The night-wine and pink identity, real content, bilingual behavior and monogram remain the foundation.
+
+Project tabs are four numbered selector cards: two columns on phones, four from 640px.
+The selected card receives a shared-layout illuminated surface; fine-pointer hover lifts it
+5px and scales it to 1.025. The detail area has an inset dark surface with clear title,
+metadata, outcome, technology tags and actions. No project imagery or proof is invented.
+
+Each tile reveals once when 12% enters the viewport: 28px rise over 600ms, with 85ms
+content stagger. Hero text uses individual 22px/500ms reveals. Navigation enters from above,
+the active link shares a sliding highlight, and mobile links appear 45ms apart.
+Buttons lift 3px on hover and compress to 0.97 on press. Reduced motion removes translation,
+scaling and stagger. This supersedes the page-load-only stagger and pill-tab presentation above.

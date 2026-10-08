@@ -35,3 +35,12 @@ export const springs = {
   // For useSpring on pointer-tracked values (tilt, glare)
   pointer: { stiffness: 150, damping: 18, mass: 0.6 },
 };
+
+// Content reveals inherit the viewport state of their containing tile.
+export const revealVariants = (reduce: boolean) => ({
+  hidden: { opacity: 0, y: reduce ? 0 : 22 },
+  visible: {
+    opacity: 1, y: 0,
+    transition: { duration: reduce ? 0.12 : 0.5, ease: motionTokens.easing.smooth },
+  },
+});

@@ -18,10 +18,10 @@ import { motionTokens, springs } from '../lib/motion';
 /* ---------- Shared class strings ---------- */
 
 const buttonBase =
-  'inline-flex items-center justify-center gap-2 rounded-full text-sm font-semibold transition-[background-color,border-color,color,transform] duration-200 active:scale-[0.97] motion-reduce:active:scale-100 disabled:opacity-60';
+  'portfolio-button inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-semibold transition-[background-color,border-color,color,transform] duration-200 active:scale-[0.97] motion-reduce:active:scale-100 disabled:opacity-60';
 
-export const btnPrimary = `${buttonBase} bg-neon px-5 py-3 text-night shadow-[0_10px_30px_-12px_rgba(255,79,174,0.9)] hover:bg-neon-soft`;
-export const btnSecondary = `${buttonBase} border border-chrome/35 bg-white/[0.04] px-5 py-3 text-ink hover:border-chrome/70 hover:bg-white/[0.08]`;
+export const btnPrimary = `${buttonBase} button-primary bg-neon px-5 py-3 text-night shadow-[0_10px_30px_-12px_rgba(255,79,174,0.9)] hover:bg-neon-soft`;
+export const btnSecondary = `${buttonBase} button-secondary border border-chrome/35 bg-white/[0.04] px-5 py-3 text-ink hover:border-chrome/70 hover:bg-white/[0.08]`;
 export const btnQuiet = `${buttonBase} px-3 py-3 text-ink-soft hover:text-ink`;
 export const chip =
   'rounded-lg border border-neon/20 bg-neon/[0.08] px-2.5 py-1 text-xs font-semibold text-ink-soft';
@@ -70,16 +70,18 @@ export const Background: React.FC = () => {
   );
 };
 
-/* ---------- Tile: glass panel with page-load entrance and pointer tilt ---------- */
+/* ---------- Tile: glass panel with viewport entrance and pointer tilt ---------- */
 
 export const tileVariants = (reduce: boolean) => ({
-  hidden: { opacity: 0, y: reduce ? 0 : motionTokens.distance.md },
+  hidden: { opacity: 0, y: reduce ? 0 : 28 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
       duration: reduce ? motionTokens.duration.fast : motionTokens.duration.slow,
       ease: motionTokens.easing.smooth,
+      staggerChildren: reduce ? 0 : 0.085,
+      delayChildren: reduce ? 0 : 0.08,
     },
   },
 });
@@ -143,10 +145,13 @@ export const Tile: React.FC<TileProps> = ({
     'aria-labelledby': labelledBy,
     'aria-label': ariaLabel,
     variants: tileVariants(reduce),
+    initial: "hidden",
+    whileInView: "visible",
+    viewport: { once: true, amount: 0.12 },
     onPointerMove: handlePointerMove,
     onPointerLeave: handlePointerLeave,
     style: tiltOn ? { rotateX: springX, rotateY: springY, transformPerspective: 1400 } : undefined,
-    className: `glass ${lit ? 'glass-lit' : ''} relative scroll-mt-24 ${className}`,
+    className: `glass portfolio-tile ${lit ? 'glass-lit' : ''} relative scroll-mt-24 ${className}`,
   };
 
   const inner = (
@@ -182,6 +187,9 @@ interface DialogProps {
 export const Dialog: React.FC<DialogProps> = (props) => (
   <AnimatePresence>{props.open && <DialogInner key="dialog" {...props} />}</AnimatePresence>
 );
+
+// Dialogs can overlap during their exit/enter transitions.
+const dialogLock = { count: 0, inert: false, overflow: '', paddingRight: '', returnFocus: null as HTMLElement | null };
 
 const FOCUSABLE =
   'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -272,9 +280,18 @@ const DialogInner: React.FC<DialogProps> = ({
   // Focus management, Escape to close, Tab trap, scroll lock
   useEffect(() => {
     const previouslyFocused = document.activeElement as HTMLElement | null;
+    const appRoot = document.getElementById('root');
+    if (dialogLock.count === 0) {
+      dialogLock.inert = appRoot?.inert ?? false;
+      dialogLock.overflow = document.body.style.overflow;
+      dialogLock.paddingRight = document.body.style.paddingRight;
+      dialogLock.returnFocus = previouslyFocused;
+    }
+    dialogLock.count += 1;
+    if (appRoot) appRoot.inert = true;
     const panel = panelRef.current;
     const preferred = panel?.querySelector<HTMLElement>('[data-autofocus]');
-    (preferred ?? closeRef.current)?.focus({ preventScroll: true });
+    ((window.matchMedia('(pointer: coarse)').matches ? null : preferred) ?? closeRef.current)?.focus({ preventScroll: true });
 
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -299,16 +316,20 @@ const DialogInner: React.FC<DialogProps> = ({
     };
     document.addEventListener('keydown', onKeyDown);
 
-    const { overflow, paddingRight } = document.body.style;
     const scrollbar = window.innerWidth - document.documentElement.clientWidth;
     document.body.style.overflow = 'hidden';
     if (scrollbar > 0) document.body.style.paddingRight = `${scrollbar}px`;
 
     return () => {
       document.removeEventListener('keydown', onKeyDown);
-      document.body.style.overflow = overflow;
-      document.body.style.paddingRight = paddingRight;
-      previouslyFocused?.focus({ preventScroll: true });
+      dialogLock.count -= 1;
+      if (dialogLock.count === 0) {
+        document.body.style.overflow = dialogLock.overflow;
+        document.body.style.paddingRight = dialogLock.paddingRight;
+        if (appRoot) appRoot.inert = dialogLock.inert;
+        dialogLock.returnFocus?.focus({ preventScroll: true });
+        dialogLock.returnFocus = null;
+      }
     };
   }, []);
 

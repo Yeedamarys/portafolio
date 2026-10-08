@@ -1,11 +1,11 @@
 import React, { Suspense, lazy, useEffect, useId, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import {
-  ArrowDown,
   ArrowRight,
   Check,
   ChevronRight,
   Copy,
+  Code2,
   ExternalLink,
   FileText,
   Github,
@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 import { SHARED, whatsappUrl } from '../data/portfolioData';
 import { useI18n } from '../i18n/LanguageContext';
-import { motionTokens, springs } from '../lib/motion';
+import { motionTokens, revealVariants, springs } from '../lib/motion';
 import { MONOGRAM_SVG } from '../lib/monogram';
 import { soundFx } from '../utils/audioChimes';
 import { Tile, btnPrimary, btnSecondary, chip, useCoarsePointer, useReduce } from './ui';
@@ -38,55 +38,55 @@ interface IdentityTileProps {
 export const IdentityTile: React.FC<IdentityTileProps> = ({ onOpenCv, onOpenContact }) => {
   const { t } = useI18n();
   const p = t.personal;
+  const reduce = useReduce();
+  const reveal = revealVariants(reduce);
 
   return (
-    <Tile id="inicio" labelledBy="identity-name" lit className="order-1 rounded-[32px] p-6 sm:p-9 lg:order-none lg:col-span-7">
-      <h1
-        id="identity-name"
-        className="font-display text-[clamp(2.6rem,6vw,5rem)] font-semibold leading-[0.92] tracking-[-0.035em] text-ink"
-      >
-        {SHARED.firstName}
-        <br />
-        <span className="text-neon">{SHARED.lastName}</span>
-      </h1>
-
-      <p className="mt-5 font-display text-base font-medium text-chrome sm:text-lg">{p.title}</p>
-      <p className="mt-3 max-w-[54ch] text-base leading-relaxed text-ink-soft sm:text-lg">{p.offer}</p>
-
-      <p className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-ink-soft">
-        <span className="inline-flex items-center gap-2 font-medium text-ink">
-          <span className="h-2 w-2 rounded-full bg-mint" aria-hidden="true" />
+    <Tile id="inicio" labelledBy="identity-name" tilt={false} lit
+      className="hero-tile order-1 overflow-hidden rounded-[32px] p-6 sm:p-9 lg:order-none lg:col-span-7"
+      innerClassName="flex h-full flex-col">
+      <motion.div variants={reveal} className="mb-7 flex flex-wrap items-center justify-between gap-3">
+        <span className="availability-badge inline-flex items-center gap-2.5 rounded-full px-3 py-1.5 text-xs font-semibold text-ink">
+          <span className="h-1.5 w-1.5 rounded-full bg-mint" aria-hidden="true" />
           {p.status}
         </span>
-        <span className="inline-flex items-center gap-1.5">
-          <MapPin className="h-4 w-4 text-neon-soft" aria-hidden="true" />
-          {p.location}
-        </span>
-      </p>
+        <Code2 className="h-6 w-6 text-neon-soft/70" aria-hidden="true" />
+      </motion.div>
 
-      <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
-        <a href="#proyectos" className={btnPrimary}>
+      <h1 id="identity-name" className="hero-name font-display font-semibold text-ink">
+        <span className="block overflow-hidden pb-1">
+          <motion.span variants={reveal} className="block">{SHARED.firstName}</motion.span>
+        </span>
+        <span className="block overflow-hidden pb-2">
+          <motion.span variants={reveal} className="block text-neon">{SHARED.lastName}<span aria-hidden="true" className="text-neon-soft">.</span></motion.span>
+        </span>
+      </h1>
+
+      <motion.p variants={reveal} className="mt-5 flex items-center gap-3 text-lg font-semibold tracking-tight text-chrome sm:text-xl">
+        <span className="h-px w-8 shrink-0 bg-neon" aria-hidden="true" />
+        {p.title}
+      </motion.p>
+      <motion.p variants={reveal} className="mt-4 max-w-[46ch] text-base leading-relaxed text-ink-soft sm:text-lg">{p.offer}</motion.p>
+
+      <motion.div variants={reveal} className="mt-auto flex flex-wrap items-center gap-3 pt-7">
+        <a href="#proyectos" className={btnPrimary + ' hero-cta'}>
           {t.ui.hero.seeProjects}
-          <ArrowDown className="h-4 w-4" aria-hidden="true" />
+          <span className="cta-icon"><ArrowRight className="h-4 w-4" aria-hidden="true" /></span>
         </a>
-        <button
-          type="button"
-          className={btnSecondary}
-          onClick={(e) => onOpenCv(e.currentTarget.getBoundingClientRect())}
-        >
-          <FileText className="h-4 w-4" aria-hidden="true" />
-          {t.ui.cv.open}
+        <button type="button" className={btnSecondary}
+          onClick={(e) => onOpenCv(e.currentTarget.getBoundingClientRect())}>
+          <FileText className="h-4 w-4" aria-hidden="true" />{t.ui.cv.open}
         </button>
-        {/* No horizontal padding so it lines up with the content edge when it wraps */}
-        <button
-          type="button"
-          className="inline-flex items-center gap-2 py-3 text-sm font-semibold text-ink-soft transition-colors hover:text-ink"
-          onClick={(e) => onOpenContact(e.currentTarget.getBoundingClientRect())}
-        >
-          <Send className="h-4 w-4" aria-hidden="true" />
-          {t.ui.hero.writeMe}
+      </motion.div>
+      <motion.div variants={reveal} className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-4 text-sm">
+        <span className="inline-flex items-center gap-1.5 text-ink-muted">
+          <MapPin className="h-4 w-4 text-neon-soft" aria-hidden="true" />{p.location}
+        </span>
+        <button type="button" className="inline-flex items-center gap-2 rounded-lg py-1 font-semibold text-ink-soft transition-colors hover:text-neon-soft"
+          onClick={(e) => onOpenContact(e.currentTarget.getBoundingClientRect())}>
+          {t.ui.hero.writeMe}<Send className="h-3.5 w-3.5" aria-hidden="true" />
         </button>
-      </div>
+      </motion.div>
     </Tile>
   );
 };
@@ -249,59 +249,51 @@ export const ProjectsTile: React.FC<ProjectsTileProps> = ({ onOpenProject }) => 
     <Tile
       id="proyectos"
       labelledBy="projects-heading"
+      tilt={false}
       lit
-      className="order-2 rounded-[32px] p-6 sm:p-8 lg:order-none lg:col-span-8"
+      className="projects-tile order-2 rounded-[32px] p-6 sm:p-8 lg:order-none lg:col-span-8"
       innerClassName="flex h-full flex-col"
     >
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <h2 id="projects-heading" className="font-display text-2xl font-semibold tracking-[-0.02em] text-ink sm:text-3xl">
-          {ui.heading}
-        </h2>
-        <div
-          role="tablist"
-          aria-label={ui.tabsLabel}
-          onKeyDown={onTabKeyDown}
-          className="flex max-w-full gap-0.5 overflow-x-auto rounded-full border border-neon/20 bg-black/25 p-1 [scrollbar-width:none] sm:gap-1"
-        >
-          {projects.map((proj, i) => {
-            const selected = i === index;
-            return (
-              <button
-                key={proj.id}
-                ref={(el) => {
-                  tabRefs.current[i] = el;
-                }}
-                id={`project-tab-${proj.id}`}
-                type="button"
-                role="tab"
-                aria-selected={selected}
-                aria-controls="project-panel"
-                tabIndex={selected ? 0 : -1}
-                onClick={() => select(i, i > index ? 1 : -1)}
-                className={`relative whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-semibold transition-colors sm:px-3.5 ${
-                  selected ? 'text-night' : 'text-ink-soft hover:text-ink'
-                }`}
-              >
-                {selected && (
-                  <motion.span
-                    layoutId="project-tab-pill"
-                    className="absolute inset-0 rounded-full bg-neon"
-                    transition={reduce ? { duration: 0 } : springs.snappy}
-                  />
-                )}
-                <span className="relative">{proj.short}</span>
-              </button>
-            );
-          })}
-        </div>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h2 id="projects-heading" className="font-display text-2xl font-semibold tracking-[-0.03em] text-ink sm:text-3xl">{ui.heading}</h2>
+        <span aria-hidden="true" className="project-count shrink-0 rounded-full border border-neon/20 px-3 py-1 text-xs text-neon-soft tabular">{String(index + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}</span>
+      </div>
+      <div role="tablist" aria-label={ui.tabsLabel} onKeyDown={onTabKeyDown}
+        className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {projects.map((proj, i) => {
+          const selected = i === index;
+          return (
+            <motion.button key={proj.id}
+              ref={(el) => { tabRefs.current[i] = el; }}
+              id={`project-tab-${proj.id}`} type="button" role="tab"
+              aria-selected={selected} aria-controls="project-panel" tabIndex={selected ? 0 : -1}
+              onClick={() => select(i, i > index ? 1 : -1)}
+              variants={revealVariants(reduce)}
+              whileHover={reduce || coarse ? undefined : { y: -5, scale: 1.025 }}
+              whileTap={reduce ? undefined : { scale: 0.98 }}
+              transition={springs.snappy}
+              className="project-selector relative min-w-0 rounded-2xl p-3.5 text-left sm:p-4">
+              {selected && <motion.span layoutId="project-tab-pill"
+                className="project-selection pointer-events-none absolute inset-0 rounded-2xl"
+                transition={reduce ? { duration: 0 } : springs.snappy} />}
+              <span className="relative flex items-center justify-between gap-2">
+                <span aria-hidden="true" className="font-mono text-xs text-ink-muted">{String(i + 1).padStart(2, '0')}</span>
+                <ArrowRight className="project-selector-arrow h-4 w-4 text-neon-soft" aria-hidden="true" />
+              </span>
+              <span className="relative mt-5 block text-sm font-bold text-ink sm:text-base">{proj.short}</span>
+              <span className="relative mt-1 block text-xs leading-snug text-ink-muted">{proj.category}</span>
+            </motion.button>
+          );
+        })}
       </div>
 
       <div
         id="project-panel"
         ref={panelRef}
         role="tabpanel"
+        tabIndex={0}
         aria-labelledby={`project-tab-${project.id}`}
-        className="relative mt-6 flex-1 overflow-hidden"
+        className="project-detail relative mt-6 flex-1 rounded-2xl p-5 sm:p-6"
       >
         <AnimatePresence mode="wait" initial={false} custom={direction}>
           <motion.div
@@ -319,16 +311,16 @@ export const ProjectsTile: React.FC<ProjectsTileProps> = ({ onOpenProject }) => 
               if (info.offset.x < -offset || info.velocity.x < -velocity) select(index + 1, 1);
               else if (info.offset.x > offset || info.velocity.x > velocity) select(index - 1, -1);
             }}
-            className="grid h-full touch-pan-y gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-8"
+            className="grid h-full min-w-0 touch-pan-y gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:gap-7"
           >
             <div className="flex flex-col">
-              <h3 className="font-display text-xl font-semibold leading-tight tracking-[-0.02em] text-ink sm:text-2xl">
+              <h3 className="font-display text-xl font-semibold leading-tight tracking-[-0.035em] text-ink sm:text-[1.65rem]">
                 {project.title}
               </h3>
-              <p className="mt-1.5 text-sm text-ink-muted">
+              <p className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-xs text-ink-muted">
                 <span className="font-semibold text-ink-soft">{project.companyOrContext}</span>
-                <span className="ml-2 tabular">{project.period}</span>
-                <span className="ml-2">{project.category}</span>
+                <span className="tabular">{project.period}</span>
+                <span className="text-neon-soft">{project.category}</span>
               </p>
               <p className="mt-4 max-w-[60ch] text-base leading-relaxed text-ink-soft">{project.outcome}</p>
               {project.myRole && (
@@ -380,7 +372,9 @@ export const ProjectsTile: React.FC<ProjectsTileProps> = ({ onOpenProject }) => 
             {project.image ? (
               <img
                 src={project.image}
-                alt=""
+                alt={project.title}
+                width={960}
+                height={600}
                 loading="lazy"
                 decoding="async"
                 className="max-h-80 w-full rounded-2xl border border-neon/20 object-cover object-top"
@@ -412,6 +406,7 @@ export const ProjectsTile: React.FC<ProjectsTileProps> = ({ onOpenProject }) => 
 
 export const SkillsTile: React.FC = () => {
   const { t } = useI18n();
+  const reveal = revealVariants(useReduce());
   return (
     <Tile id="habilidades" labelledBy="skills-heading" className="rounded-[24px] p-6">
       <h2 id="skills-heading" className={headingClass}>
@@ -420,13 +415,13 @@ export const SkillsTile: React.FC = () => {
       <dl className="mt-4 grid items-start gap-x-6 gap-y-3 sm:grid-cols-2">
         {t.skills.map((skill) => (
           // Category beside the name on phones; above it in the two-column layout, where width is tight
-          <div key={skill.id} className="grid grid-cols-[6.5rem_1fr] gap-3 sm:flex sm:flex-col sm:gap-0.5">
+          <motion.div key={skill.id} variants={reveal} className="skill-item grid grid-cols-[6.5rem_1fr] gap-3 rounded-xl p-3 sm:flex sm:flex-col sm:gap-1">
             <dt className="pt-0.5 text-xs text-ink-muted sm:pt-0">{skill.category}</dt>
             <dd className="text-sm leading-snug">
               <span className="font-semibold text-ink">{skill.name}</span>
               <span className="block text-ink-muted">{skill.detail}</span>
             </dd>
-          </div>
+          </motion.div>
         ))}
       </dl>
     </Tile>
@@ -437,6 +432,7 @@ export const SkillsTile: React.FC = () => {
 
 export const LanguagesTile: React.FC = () => {
   const { t } = useI18n();
+  const reveal = revealVariants(useReduce());
   return (
     <Tile labelledBy="languages-heading" className="rounded-[24px] p-6">
       <h2 id="languages-heading" className={headingClass}>
@@ -444,10 +440,10 @@ export const LanguagesTile: React.FC = () => {
       </h2>
       <ul className="mt-4 space-y-3">
         {t.languages.map((lang) => (
-          <li key={lang.language} className="flex items-baseline justify-between gap-4 border-b border-white/[0.06] pb-3 last:border-0 last:pb-0">
+          <motion.li key={lang.language} variants={reveal} className="flex items-baseline justify-between gap-4 border-b border-white/[0.06] pb-3 last:border-0 last:pb-0">
             <span className="font-semibold text-ink">{lang.language}</span>
             <span className="text-right text-sm text-neon-soft">{lang.level}</span>
-          </li>
+          </motion.li>
         ))}
       </ul>
     </Tile>
@@ -462,6 +458,7 @@ interface ExperienceTileProps {
 
 export const ExperienceTile: React.FC<ExperienceTileProps> = ({ onOpenExperience }) => {
   const { t } = useI18n();
+  const reveal = revealVariants(useReduce());
   return (
     <Tile id="experiencia" labelledBy="experience-heading" className="rounded-[28px] p-6 sm:p-7">
       <h2 id="experience-heading" className={headingClass}>
@@ -469,11 +466,11 @@ export const ExperienceTile: React.FC<ExperienceTileProps> = ({ onOpenExperience
       </h2>
       <ol className="mt-4 space-y-1">
         {t.experiences.map((exp, i) => (
-          <li key={exp.id}>
+          <motion.li key={exp.id} variants={reveal}>
             <button
               type="button"
               onClick={(e) => onOpenExperience(i, e.currentTarget.getBoundingClientRect())}
-              className="group flex w-full items-center gap-4 rounded-2xl px-3 py-3 text-left transition-colors hover:bg-white/[0.05]"
+              className="experience-row group flex w-full items-center gap-4 rounded-2xl px-3 py-4 text-left"
             >
               {/* Date sits above the company on phones, in its own column from sm up */}
               <span className="min-w-0 flex-1 sm:flex sm:items-baseline sm:gap-4">
@@ -489,7 +486,7 @@ export const ExperienceTile: React.FC<ExperienceTileProps> = ({ onOpenExperience
               />
               <span className="sr-only">{t.ui.experience.details}</span>
             </button>
-          </li>
+          </motion.li>
         ))}
       </ol>
     </Tile>
@@ -501,6 +498,7 @@ export const ExperienceTile: React.FC<ExperienceTileProps> = ({ onOpenExperience
 export const AboutTile: React.FC = () => {
   const { t } = useI18n();
   const p = t.personal;
+  const reveal = revealVariants(useReduce());
   return (
     <Tile id="sobre-mi" labelledBy="about-heading" className="rounded-[28px] p-6 sm:p-7">
       <h2 id="about-heading" className={headingClass}>
@@ -509,7 +507,7 @@ export const AboutTile: React.FC = () => {
       <p className="mt-4 font-display text-lg leading-snug text-ink sm:text-xl">{p.tagline}</p>
       <div className="mt-4 max-w-[68ch] space-y-3 text-base leading-relaxed text-ink-soft">
         {p.aboutSummary.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
+          <motion.p key={paragraph} variants={reveal}>{paragraph}</motion.p>
         ))}
         <p className="text-neon-soft">{p.jobObjective}</p>
       </div>
@@ -566,7 +564,7 @@ export const ContactTile: React.FC<ContactTileProps> = ({ onOpenContact }) => {
   };
 
   const linkClass =
-    'inline-flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.04] px-4 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-neon/50 hover:bg-neon/10';
+    'portfolio-button button-secondary inline-flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.04] px-4 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-neon/50 hover:bg-neon/10';
 
   return (
     <Tile id="contacto" labelledBy="contact-heading" className="rounded-[28px] p-6 sm:p-7">
